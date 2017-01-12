@@ -1,8 +1,7 @@
 "use strict";
 
 util = require './util'
-requestUtil = require './expressUtil'
-responseUtil = require './responseUtil'
+expressUtil = require './expressUtil'
 
 module.exports.Util = () -> util
 module.exports.ExpressUtil = () -> expressUtil
