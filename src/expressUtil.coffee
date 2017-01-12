@@ -3,35 +3,52 @@ util = require './util'
 
 ###
 # Send an ajax object
-# @param req
 # @param res
 # @param object
+# @exception NOT_OBJECT_EXCEPTION
 ###
-module.exports.sendObject = (req, res, object) -> response = {'object': object};res.setHeader 'Content-Type', 'application/json';res.send response
+module.exports.sendObject = (res, object) ->
+    util.notObjectException res
+    util.notObjectException object
+    response = {'object': object}
+    res.setHeader 'Content-Type', 'application/json'
+    res.send response
 
 ###
 # Send an ajax data
-# @param req
 # @param res
 # @param object
+# @exception NOT_OBJECT_EXCEPTION
 ###
-module.exports.sendData = (req, res, data) -> response = {'aaData': data};res.setHeader 'Content-Type', 'application/json';res.send response
+module.exports.sendData = (res, data) ->
+    util.notObjectException res
+    response = {'aaData': data}
+    res.setHeader 'Content-Type', 'application/json'
+    res.send response
 
 ###
 # Send an ajax message
-# @param req
 # @param res
 # @param object
+# @exception NOT_OBJECT_EXCEPTION, NOT_STRING_EXCEPTION
 ###
-module.exports.sendMessage = (req, res, msg) -> res.setHeader 'Content-Type', 'text/html';res.send msg
+module.exports.sendMessage = (res, msg) ->
+    util.notObjectException res
+    util.notStringException msg
+    res.setHeader 'Content-Type', 'text/html'
+    res.send msg
 
 ###
 # Send an ajax error
-# @param req
 # @param res
 # @param object
+# @exception NOT_OBJECT_EXCEPTION, NOT_STRING_EXCEPTION
 ###
-module.exports.sendError = (req, res, msg) -> res.setHeader 'Content-Type', 'text/html';res.send "Error technique : [" + msg + "]"
+module.exports.sendError = (res, msg) ->
+    util.notObjectException res
+    util.notStringException msg
+    res.setHeader 'Content-Type', 'text/html'
+    res.send "Error technique : [#{msg}]"
 
 ###
 # Vérifie et extrait le paramêtres correspondant au nom
@@ -39,9 +56,12 @@ module.exports.sendError = (req, res, msg) -> res.setHeader 'Content-Type', 'tex
 # @param name
 # @param info: {type: string, required: boolean}
 # @return params
+# @exception NOT_OBJECT_EXCEPTION, NOT_STRING_EXCEPTION, BLANK_EXCEPTION
 ###
 module.exports.extractParam = (req, name, info) ->
-    util.notObjectException req, "requestUtil => req must be an object value"
+    util.notObjectException req
+    util.notStringException name
+    util.blankException name
     param = if util.isObject req.body then req.body[name] else null
     if util.isNotNullOrUndefined param then param = JSON.parse param
 

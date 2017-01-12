@@ -1,12 +1,14 @@
 # common #
-Auteur : Jtutzo, dernière version : 1.0
+Auteur : Jtutzo, dernière version : 1.0.1, statut : stable
 
 > C'est un module qui regroupe des méthodes utils pour l'environement nodeJs.
 Il est composé de sous-modules qui sont les suivants :
  - [util](#util)
  - [expressUtil](#expressUtil)
 
+
 ## util <a id="util"></a>##
+
 ### Utilisations ###
 
 `var util = require('common').Util();`
@@ -631,7 +633,7 @@ Il est composé de sous-modules qui sont les suivants :
 #### isObject <a id="isObject"></a>####
 
 > Test si la valeur est un `object` <br />
-***Attention*** : Une liste n'est pas considérée comme un objet
+***Attention*** : Une liste n'est pas considérée comme un objet tout comme la valeur `null`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
@@ -640,7 +642,7 @@ Il est composé de sous-modules qui sont les suivants :
 #### isNotObject <a id="isNotObject"></a>####
 
 > Test si la valeur n'est pas un `object` <br />
-***Attention*** : Une liste n'est pas considérée comme un objet
+***Attention*** : Une liste n'est pas considérée comme un objet tout comme la valeur `null`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
@@ -716,4 +718,67 @@ Il est composé de sous-modules qui sont les suivants :
 ## expressUtil <a id="expressUtil"></a>##
 
 ### Utilisations ###
+
 `var expressUtil = require('common').ExpressUtil();`
+
+### Méthodes ####
+- [sendObject](#sendObject)
+- [sendData](#sendData)
+- [sendMessage](#sendMessage)
+- [sendError](#sendError)
+- [extractParam](#extractParam)
+
+### Méthodes ####
+
+#### sendObject <a id="sendObject"></a>####
+
+> Envoie un `object` par l'intermédiaire d'une requête Ajax <br />
+***Attention*** :  `array` et `null` ne sont pas considérés comme des `object` <br />
+***Exception*** :  `NOT_OBJECT_EXCEPTION`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|res            |object               |response du framework expressJs|
+|object            |object            |Object à envoyer|
+
+#### sendData <a id="sendData"></a>####
+
+> Envoie des données par l'intermédiaire d'une requête Ajax <br />
+***Exception*** :  `NOT_OBJECT_EXCEPTION`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|res            |object               |response du framework expressJs|
+|data           |uknow                |Données à envoyer|
+
+#### sendMessage <a id="sendMessage"></a>####
+
+> Envoie un message par l'intermédiaire d'une requête Ajax <br />
+***Exception*** :  `NOT_OBJECT_EXCEPTION`, `NOT_STRING_EXCEPTION`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|res            |object               |response du framework expressJs|
+|msg            |string               |message à envoyer|
+
+#### sendError <a id="sendError"></a>####
+
+> Envoie un message d'erreur par l'intermédiaire d'une requête Ajax <br />
+***Exception*** :  `NOT_OBJECT_EXCEPTION`, `NOT_STRING_EXCEPTION`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|res            |object               |response du framework expressJs|
+|msg            |string               |message d'erreur à envoyer|
+
+#### extractParam <a id="extractParam"></a>####
+
+> Extrait et test le paramètre correspondant au nom <br />
+***Exception*** :  `NOT_OBJECT_EXCEPTION`, `NOT_STRING_EXCEPTION`, `BLANK_EXCEPTION`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|req            |object               |requête du framework expressJs|
+|name           |string               |nom du paramètre à extraire|
+|info.type      |string               |type du paramètre (optionnel)|
+|info.required  |boolnean             |si le paramètre est obligatoire (optionnel)|
