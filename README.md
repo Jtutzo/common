@@ -85,6 +85,30 @@ Il est composé de sous-modules qui sont les suivants :
 - [noContain](#noContain)
 - [clone](#clone)
 
+### Méthodes pour la gestion des types ###
+- [isNull](#isNull)
+- [isNotNull](#isNotNull)
+- [isUndefined](#isUndefined)
+- [isNotUndefined](#isNotUndefined)
+- [isBoolean](#isBoolean)
+- [isNotBoolean](#isNotBoolean)
+- [isNumber](#isNumber)
+- [isNotNumber](#isNotNumber)
+- [isString](#isString)
+- [isNotString](#isNotString)
+- [isObject](#isObject)
+- [isNotObject](#isNotObject)
+- [isArray](#isArray)
+- [isNotArray](#isNotArray)
+- [isFunction](#isFunction)
+- [isNotFunction](#isNotFunction)
+- [getType](#getType)
+
+### Méthodes pour le débuggage ###
+- [modeDebug](#modeDebug)
+- [debug](#debug)
+- [error](#error)
+
 ### Détails ###
 
 #### UNDEFINED <a id="constUndefined"></a>####
@@ -524,6 +548,169 @@ Il est composé de sous-modules qui sont les suivants :
 | ------------- |-------------        | ---------  |
 |element          |uknow              |Elément à cloner|
 
+#### isNull <a id="isNull"></a>####
+
+> Test si la valeur est `null`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isNotNull <a id="isNotNull"></a>####
+
+> Test si la valeur n'est pas `null`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isUndefined <a id="isUndefined"></a>####
+
+> Test si la valeur est `undefined`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isNotUndefined <a id="isNotUndefined"></a>####
+
+> Test si la valeur n'est pas `undefined`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isBoolean <a id="isBoolean"></a>####
+
+> Test si la valeur est un `boolean`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isNotBoolean <a id="isNotBoolean"></a>####
+
+> Test si la valeur n'est pas un `boolean`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isNumber <a id="isNumber"></a>####
+
+> Test si la valeur est un `number`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isNotNumber <a id="isNotNumber"></a>####
+
+> Test si la valeur n'est pas un `number`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isString <a id="isString"></a>####
+
+> Test si la valeur est un `string`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isNotString <a id="isNotString"></a>####
+
+> Test si la valeur n'est pas un `string`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isObject <a id="isObject"></a>####
+
+> Test si la valeur est un `object` <br />
+***Attention*** : Une liste n'est pas considérée comme un objet
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isNotObject <a id="isNotObject"></a>####
+
+> Test si la valeur n'est pas un `object` <br />
+***Attention*** : Une liste n'est pas considérée comme un objet
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isArray <a id="isArray"></a>####
+
+> Test si la valeur est une `array`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isNotArray <a id="isNotArray"></a>####
+
+> Test si la valeur n'est pas une `array`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isFunction <a id="isFunction"></a>####
+
+> Test si la valeur est une `function`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isNotFunction <a id="isNotFunction"></a>####
+
+> Test si la valeur n'est pas une `function`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### getType <a id="getType"></a>####
+
+> Retourne le type de la valeur (`UNDEFINED`, `NULL`, `BOOLEAN`, `NUMBER`, `STRING`, `OBJECT`, `ARRAY`, `FUNCTION`) <br />
+***Exception*** :  Si la valeur est indéterminée (peu probable)
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### modeDebug <a id="modeDebug"></a>####
+
+> Active/désactive le mode débug <br />
+***Exception*** :  `NOT_BOOLEAN_EXCEPTION`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|isModeDebug    |boolean              |Active/désactive le mode débug|
+
+#### debug <a id="debug"></a>####
+
+> Affiche un message dans la console de debug
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|message        |string               |Message à afficher|
+
+#### error <a id="error"></a>####
+
+> Affiche un message dans la console d'erreur
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|message        |string               |Message à afficher|
 
 
 ## expressUtil <a id="expressUtil"></a>##
