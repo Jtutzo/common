@@ -7,7 +7,7 @@ Il est composé de sous-modules qui sont les suivants :
  - [expressUtil](#expressUtil)
 
 ## util <a id="util"></a>##
-### Chargement ###
+### Utilisations ###
 
 `var util = require('common').Util();`
 
@@ -70,6 +70,20 @@ Il est composé de sous-modules qui sont les suivants :
 - [notArrayException](#notArrayException)
 - [functionException](#functionException)
 - [notFunctionException](#notFunctionException)
+
+### Méthodes utils ###
+- [isNullOrUndefined](#isNullOrUndefined)
+- [isNotNullOrUndefined](#isNotNullOrUndefined)
+- [isBlank](#isBlank)
+- [isNotBlank](#isNotBlank)
+- [isEmpty](#isEmpty)
+- [isNotEmpty](#isNotEmpty)
+- [oneIsEmpty](#oneIsEmpty)
+- [isEquals](#isEquals)
+- [oneIsEquals](#oneIsEquals)
+- [contain](#contain)
+- [noContain](#noContain)
+- [clone](#clone)
 
 ### Détails ###
 
@@ -404,8 +418,115 @@ Il est composé de sous-modules qui sont les suivants :
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur n'est pas une `function`|
 
+#### isNullOrUndefined <a id="isNullOrUndefined"></a>####
+
+> Test si la valeur est `null` ou `undefined`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isNotNullOrUndefined <a id="isNotNullOrUndefined"></a>####
+
+> Test si la valeur n'est pas `null` ni `undefined`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isBlank <a id="isBlank"></a>####
+
+> Test si la valeur est vide (`undefined`, `null`, `""`, `" "`)
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isNotBlank <a id="isNotBlank"></a>####
+
+> Test si la valeur n'est pas vide (`undefined`, `null`, `""`, `" "`)
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isEmpty <a id="isEmpty"></a>####
+
+> Test si la valeur est vide (tous types)
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### isNotEmpty <a id="isNotEmpty"></a>####
+
+> Test si la valeur n'est pas vide (tous types)
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+#### oneIsEmpty <a id="oneIsEmpty"></a>####
+
+> Test si au moins une des valeurs de la liste est vide
+<br/> ***Exception*** : `NOT_ARRAY_EXCEPTION`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|array          |array               |Valeur à tester|
+
+#### isEquals <a id="isEquals"></a>####
+
+> Test si les deux valeurs sont egales
+<br/> ***Attention*** : utilisation de JSON pour la comparaison
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value1         |unknow               |Valeur 1 à comparer|
+|value2         |unknow               |Valeur 2 à comparer|
+
+#### oneIsEquals <a id="oneIsEquals"></a>####
+
+> Test si au moins 2 valeurs (de chaque liste) sont égales
+<br/> ***Exception*** : `NOT_ARRAY_EXCEPTION`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|array1         |array               |Liste 1|
+|array2         |array               |Liste 2|
+
+#### contain <a id="contain"></a>####
+
+> Test si la liste contient l'élément
+<br/> ***Exception*** : `NOT_ARRAY_EXCEPTION`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|array          |array                |Liste à tester|
+|el             |uknow                |Elément |
+
+#### noContain <a id="noContain"></a>####
+
+> Test si la liste ne contient pas l'élément
+<br/> ***Exception*** : `NOT_ARRAY_EXCEPTION`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|array          |array                |Liste à tester|
+|el             |uknow                |Elément |
+
+#### clone <a id="clone"></a>####
+
+> Clone l'élément
+<br/> ***Exception*** : `UNDEFINED_EXCEPTION`, `FUNCTION_EXCEPTION`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|element          |uknow              |Elément à cloner|
+
+
 
 ## expressUtil <a id="expressUtil"></a>##
 
-### Chargement ###
+### Utilisations ###
 `var expressUtil = require('common').ExpressUtil();`
