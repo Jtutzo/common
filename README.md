@@ -133,109 +133,109 @@ Constante correspondant au type `number`
 
 Constante correspondant au type `string`
 
-#### OBJECT <a id="constObject"></a>####
+**`OBJECT`<a id="constObject"></a>**
 
-> Constante correspondant au type `object`
+Constante correspondant au type `object`
 
-#### ARRAY <a id="constArray"></a>####
+**`ARRAY`<a id="constArray"></a>**
 
-> Constante correspondant au type `array`
+Constante correspondant au type `array`
 
-#### FUNCTION <a id="constFunction"></a>####
+**`FUNCTION`<a id="constFunction"></a>**
 
-> Constante correspondant au type `function`
+Constante correspondant au type `function`
 
-#### ARGUMENT_EXCEPTION <a id="constFunction"></a>####
+**`ARGUMENT_EXCEPTION`<a id="constFunction"></a>**
 
-> Exception lorsque l'argument n'est pas correcte
+Exception lorsque l'argument n'est pas correcte
 
-#### NULL_OR_UNDEFINED_EXCEPTION <a id="constNullOrUndefinedException"></a>####
+**`NULL_OR_UNDEFINED_EXCEPTION`<a id="constNullOrUndefinedException"></a>**
 
-> Exception lorsque la valeur est `null` ou `undefined`
+Exception lorsque la valeur est `null` ou `undefined`
 
-#### NOT_NULL_OR_UNDEFINED_EXCEPTION <a id="constNotNullOrUndefinedException"></a>####
+**`NOT_NULL_OR_UNDEFINED_EXCEPTION`<a id="constNotNullOrUndefinedException"></a>**
 
-> Exception lorsque la valeur n'est pas `null` ni `undefined`
+Exception lorsque la valeur n'est pas `null` ni `undefined`
 
-#### NULL_EXCEPTION <a id="constNullException"></a>####
+**`NULL_EXCEPTION`<a id="constNullException"></a>**
 
-> Exception lorsque la valeur est `null`
+Exception lorsque la valeur est `null`
 
-#### NOT_NULL_EXCEPTION <a id="constNotNullException"></a>####
+**`NOT_NULL_EXCEPTION`<a id="constNotNullException"></a>**
 
-> Exception lorsque la valeur n'est pas `null`
+Exception lorsque la valeur n'est pas `null`
 
-#### UNDEFINED_EXCEPTION <a id="constUndefinedException"></a>####
+**`UNDEFINED_EXCEPTION`<a id="constUndefinedException"></a>**
 
-> Exception lorsque la valeur est `undefined`
+Exception lorsque la valeur est `undefined`
 
-#### NOT_UNDEFINED_EXCEPTION <a id="constNotUndefinedException"></a>####
+**`NOT_UNDEFINED_EXCEPTION`<a id="constNotUndefinedException"></a>**
 
-> Exception lorsque la valeur n'est pas `undefined`
+Exception lorsque la valeur n'est pas `undefined`
 
-#### BLANK_EXCEPTION <a id="constBlankException"></a>####
+**`BLANK_EXCEPTION`<a id="constBlankException"></a>**
 
-> Exception lorsque la valeur est vide (`undefined`, `null`, `""`, `" "`)
+Exception lorsque la valeur est vide (`undefined`, `null`, `""`, `" "`)
 
-#### NOT_BLANK_EXCEPTION <a id="constNotBlankException"></a>####
+**`NOT_BLANK_EXCEPTION`<a id="constNotBlankException"></a>**
 
-> Exception lorsque la valeur n'est pas vide (`undefined`, `null`, `""`, `" "`)
+Exception lorsque la valeur n'est pas vide (`undefined`, `null`, `""`, `" "`)
 
-#### EMPTY_EXCEPTION <a id="constEmptyException"></a>####
+**`EMPTY_EXCEPTION`<a id="constEmptyException"></a>**
 
-> Exception lorsque la valeur est vide (tous types)
+Exception lorsque la valeur est vide (tous types)
 
-#### NOT_EMPTY_EXCEPTION <a id="constNotEmptyException"></a>####
+**`NOT_EMPTY_EXCEPTION`<a id="constNotEmptyException"></a>**
 
-> Exception lorsque la valeur n'est pas vide (tous types)
+Exception lorsque la valeur n'est pas vide (tous types)
 
-#### BOOLEAN_EXCEPTION <a id="constBooleanException"></a>####
+**`BOOLEAN_EXCEPTION`<a id="constBooleanException"></a>**
 
-> Exception lorsque la valeur est un `boolean`
+Exception lorsque la valeur est un `boolean`
 
-#### NOT_BOOLEAN_EXCEPTION <a id="constNotBooleanException"></a>####
+**`NOT_BOOLEAN_EXCEPTION`<a id="constNotBooleanException"></a>**
 
-> Exception lorsque la valeur n'est pas un `boolean`
+Exception lorsque la valeur n'est pas un `boolean`
 
-#### NUMBER_EXCEPTION <a id="constNumberException"></a>####
+**`NUMBER_EXCEPTION`<a id="constNumberException"></a>**
 
-> Exception lorsque la valeur est un `number`
+Exception lorsque la valeur est un `number`
 
-#### NOT_NUMBER_EXCEPTION <a id="constNotNumberException"></a>####
+**`NOT_NUMBER_EXCEPTION`<a id="constNotNumberException"></a>**
 
-> Exception lorsque la valeur n'est pas un `number`
+Exception lorsque la valeur n'est pas un `number`
 
-#### STRING_EXCEPTION <a id="constStringException"></a>####
+**`STRING_EXCEPTION`<a id="constStringException"></a>**
 
-> Exception lorsque la valeur est un `string`
+Exception lorsque la valeur est un `string`
 
-#### NOT_STRING_EXCEPTION <a id="constNotStringException"></a>####
+**`NOT_STRING_EXCEPTION`<a id="constNotStringException"></a>**
 
-> Exception lorsque la valeur n'est pas un `string`
+Exception lorsque la valeur n'est pas un `string`
 
-#### OBJECT_EXCEPTION <a id="constObjectException"></a>####
+**`OBJECT_EXCEPTION`<a id="constObjectException"></a>**
 
-> Exception lorsque la valeur est un `object`
+Exception lorsque la valeur est un `object`
 
-#### NOT_OBJECT_EXCEPTION <a id="constNotObjectException"></a>####
+**`NOT_OBJECT_EXCEPTION`<a id="constNotObjectException"></a>**
 
-> Exception lorsque la valeur n'est pas un `object`
+Exception lorsque la valeur n'est pas un `object`
 
-#### ARRAY_EXCEPTION <a id="constArrayException"></a>####
+**`ARRAY_EXCEPTION`<a id="constArrayException"></a>**
 
-> Exception lorsque la valeur est une `array`
+Exception lorsque la valeur est une `array`
 
-#### NOT_ARRAY_EXCEPTION <a id="constNotArrayException"></a>####
+**`NOT_ARRAY_EXCEPTION`<a id="constNotArrayException"></a>**
 
-> Exception lorsque la valeur n'est pas une `array`
+Exception lorsque la valeur n'est pas une `array`
 
-#### FUNCTION_EXCEPTION <a id="constFunctionException"></a>####
+**`FUNCTION_EXCEPTION`<a id="constFunctionException"></a>**
 
-> Exception lorsque la valeur est une `function`
+Exception lorsque la valeur est une `function`
 
-#### NOT_FUNCTION_EXCEPTION <a id="constNotFunctionException"></a>####
+**`NOT_FUNCTION_EXCEPTION`<a id="constNotFunctionException"></a>**
 
-> Exception lorsque la valeur n'est pas une `function`
+Exception lorsque la valeur n'est pas une `function`
 
 **`argumentException`<a id="argumentException"></a>**
 
