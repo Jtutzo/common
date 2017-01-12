@@ -1,4 +1,5 @@
 # common #
+Auteur : Jtutzo, dernière version : 1.0
 
 > C'est un module qui regroupe des méthodes utils pour l'environement nodeJs.
 Il est composé de sous-modules qui sont les suivants :
@@ -10,7 +11,42 @@ Il est composé de sous-modules qui sont les suivants :
 
 `var util = require('common').Util();`
 
-### Méthodes ###
+### Constantes ###
+- [UNDEFINED](#constUndefined)
+- [NULL](#constNull)
+- [BOOLEAN](#constBoolean)
+- [NUMBER](#constNumber)
+- [STRING](#constString)
+- [OBJECT](#constObject)
+- [ARRAY](#constArray)
+- [FUNCTION ](#constFunction)
+
+### Exceptions ###
+- [ARGUMENT_EXCEPTION](#constArgumentException)
+- [NULL_OR_UNDEFINED_EXCEPTION](#constNullOrUndefinedException)
+- [NOT_NULL_OR_UNDEFINED_EXCEPTION](#constNotNullOrUndefinedException)
+- [NULL_EXCEPTION](#constNullException)
+- [NOT_NULL_EXCEPTION](#constNotNullException)
+- [UNDEFINED_EXCEPTION](#constUndefinedException)
+- [NOT_UNDEFINED_EXCEPTION](#constNotUndefinedException)
+- [BLANK_EXCEPTION](#constBlankException)
+- [NOT_BLANK_EXCEPTION](#constNotBlankException)
+- [EMPTY_EXCEPTION](#constEmptyException)
+- [NOT_EMPTY_EXCEPTION](#constNotEmptyException)
+- [BOOLEAN_EXCEPTION](#constBooleanException)
+- [NOT_BOOLEAN_EXCEPTION](#constNotBooleanException)
+- [NUMBER_EXCEPTION](#constNumberException)
+- [NOT_NUMBER_EXCEPTION](#constNotNumberException)
+- [STRING_EXCEPTION](#constStringException)
+- [NOT_STRING_EXCEPTION](#constNotStringException)
+- [OBJECT_EXCEPTION](#constObjectException)
+- [NOT_OBJECT_EXCEPTION](#constNotObjectException)
+- [ARRAY_EXCEPTION](#constArrayException)
+- [NOT_ARRAY_EXCEPTION](#constNotArrayException)
+- [FUNCTION_EXCEPTION](#constFunctionException)
+- [FUNCTION_EXCEPTION](#constNotFunctionException)
+
+### Méthodes génératrice d'exceptions ###
 - [argumentException](#argumentException)
 - [nullOrUndefinedException](#nullOrUndefinedException)
 - [notNullOrUndefinedException](#notNullOrUndefinedException)
@@ -35,7 +71,131 @@ Il est composé de sous-modules qui sont les suivants :
 - [functionException](#functionException)
 - [notFunctionException](#notFunctionException)
 
-### Documentation ###
+### Détails ###
+
+#### UNDEFINED <a id="constUndefined"></a>####
+
+> Constante correspondant au type `undefined`
+
+#### NULL <a id="constNull"></a>####
+
+> Constante correspondant au type `null`
+
+#### BOOLEAN <a id="constBoolean"></a>####
+
+> Constante correspondant au type `boolean`
+
+#### NUMBER <a id="constNumber"></a>####
+
+> Constante correspondant au type `number`
+
+#### STRING <a id="constString"></a>####
+
+> Constante correspondant au type `string`
+
+#### OBJECT <a id="constObject"></a>####
+
+> Constante correspondant au type `object`
+
+#### ARRAY <a id="constArray"></a>####
+
+> Constante correspondant au type `array`
+
+#### FUNCTION <a id="constFunction"></a>####
+
+> Constante correspondant au type `function`
+
+#### ARGUMENT_EXCEPTION <a id="constFunction"></a>####
+
+> Exception lorsque l'argument n'est pas correcte
+
+#### NULL_OR_UNDEFINED_EXCEPTION <a id="constNullOrUndefinedException"></a>####
+
+> Exception lorsque la valeur est `null` ou `undefined`
+
+#### NOT_NULL_OR_UNDEFINED_EXCEPTION <a id="constNotNullOrUndefinedException"></a>####
+
+> Exception lorsque la valeur n'est pas `null` ni `undefined`
+
+#### NULL_EXCEPTION <a id="constNullException"></a>####
+
+> Exception lorsque la valeur est `null`
+
+#### NOT_NULL_EXCEPTION <a id="constNotNullException"></a>####
+
+> Exception lorsque la valeur n'est pas `null`
+
+#### UNDEFINED_EXCEPTION <a id="constUndefinedException"></a>####
+
+> Exception lorsque la valeur est `undefined`
+
+#### NOT_UNDEFINED_EXCEPTION <a id="constNotUndefinedException"></a>####
+
+> Exception lorsque la valeur n'est pas `undefined`
+
+#### BLANK_EXCEPTION <a id="constBlankException"></a>####
+
+> Exception lorsque la valeur est vide (`undefined`, `null`, `""`, `" "`)
+
+#### NOT_BLANK_EXCEPTION <a id="constNotBlankException"></a>####
+
+> Exception lorsque la valeur n'est pas vide (`undefined`, `null`, `""`, `" "`)
+
+#### EMPTY_EXCEPTION <a id="constEmptyException"></a>####
+
+> Exception lorsque la valeur est vide (tous types)
+
+#### NOT_EMPTY_EXCEPTION <a id="constNotEmptyException"></a>####
+
+> Exception lorsque la valeur n'est pas vide (tous types)
+
+#### BOOLEAN_EXCEPTION <a id="constBooleanException"></a>####
+
+> Exception lorsque la valeur est un `boolean`
+
+#### NOT_BOOLEAN_EXCEPTION <a id="constNotBooleanException"></a>####
+
+> Exception lorsque la valeur n'est pas un `boolean`
+
+#### NUMBER_EXCEPTION <a id="constNumberException"></a>####
+
+> Exception lorsque la valeur est un `number`
+
+#### NOT_NUMBER_EXCEPTION <a id="constNotNumberException"></a>####
+
+> Exception lorsque la valeur n'est pas un `number`
+
+#### STRING_EXCEPTION <a id="constStringException"></a>####
+
+> Exception lorsque la valeur est un `string`
+
+#### NOT_STRING_EXCEPTION <a id="constNotStringException"></a>####
+
+> Exception lorsque la valeur n'est pas un `string`
+
+#### OBJECT_EXCEPTION <a id="constObjectException"></a>####
+
+> Exception lorsque la valeur est un `object`
+
+#### NOT_OBJECT_EXCEPTION <a id="constNotObjectException"></a>####
+
+> Exception lorsque la valeur n'est pas un `object`
+
+#### ARRAY_EXCEPTION <a id="constArrayException"></a>####
+
+> Exception lorsque la valeur est une `array`
+
+#### NOT_ARRAY_EXCEPTION <a id="constNotArrayException"></a>####
+
+> Exception lorsque la valeur n'est pas une `array`
+
+#### FUNCTION_EXCEPTION <a id="constFunctionException"></a>####
+
+> Exception lorsque la valeur est une `function`
+
+#### NOT_FUNCTION_EXCEPTION <a id="constNotFunctionException"></a>####
+
+> Exception lorsque la valeur n'est pas une `function`
 
 #### argumentException <a id="argumentException"></a>####
 
