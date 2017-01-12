@@ -113,25 +113,25 @@ Il est composé de sous-modules qui sont les suivants :
 
 ### Détails ###
 
-#### UNDEFINED <a id="constUndefined"></a>####
+**`UNDEFINED`<a id="constUndefined"></a>**
 
-> Constante correspondant au type `undefined`
+Constante correspondant au type `undefined`
 
-#### NULL <a id="constNull"></a>####
+**`NULL`<a id="constNull"></a>**
 
-> Constante correspondant au type `null`
+Constante correspondant au type `null`
 
-#### BOOLEAN <a id="constBoolean"></a>####
+**`BOOLEAN`<a id="constBoolean"></a>**
 
-> Constante correspondant au type `boolean`
+Constante correspondant au type `boolean`
 
-#### NUMBER <a id="constNumber"></a>####
+**`NUMBER`<a id="constNumber"></a>**
 
-> Constante correspondant au type `number`
+Constante correspondant au type `number`
 
-#### STRING <a id="constString"></a>####
+**`STRING`<a id="constString"></a>**
 
-> Constante correspondant au type `string`
+Constante correspondant au type `string`
 
 #### OBJECT <a id="constObject"></a>####
 
@@ -237,18 +237,18 @@ Il est composé de sous-modules qui sont les suivants :
 
 > Exception lorsque la valeur n'est pas une `function`
 
-#### argumentException <a id="argumentException"></a>####
+**`argumentException`<a id="argumentException"></a>**
 
-> Lance une exception `ARGUMENT_EXCEPTION` si l'expression est `true`
+Lance une exception `ARGUMENT_EXCEPTION` si l'expression est `true`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |expr           |Boolean              |Expression à vérifier|
 |message        |string               |Message à afficher si la condition est fausse|
 
-#### nullOrUndefinedException <a id="nullOrUndefinedException"></a>####
+**`nullOrUndefinedException`<a id="nullOrUndefinedException"></a>**
 
-> Lance une exception `NULL_OR_UNDEFINED_EXCEPTION` si la valeur est `null` ou `undefined`
+Lance une exception `NULL_OR_UNDEFINED_EXCEPTION` si la valeur est `null` ou `undefined`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
