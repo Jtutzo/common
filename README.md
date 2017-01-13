@@ -255,460 +255,460 @@ Lance une exception `NULL_OR_UNDEFINED_EXCEPTION` si la valeur est `null` ou `un
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur est `null` ou `undefined`|
 
-#### notNullOrUndefinedException <a id="notNullOrUndefinedException"></a>####
+**`notNullOrUndefinedException`<a id="notNullOrUndefinedException"></a>**
 
-> Lance une exception `NOT_NULL_OR_UNDEFINED_EXCEPTION` si la valeur n'est pas `null` ou `undefined`
+Lance une exception `NOT_NULL_OR_UNDEFINED_EXCEPTION` si la valeur n'est pas `null` ou `undefined`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur n'est pas `null` ou `undefined`|
 
-#### nullException <a id="nullException"></a>####
+**`nullException`<a id="nullException"></a>**
 
-> Lance une exception `NULL_EXCEPTION` si la valeur est `null`
+Lance une exception `NULL_EXCEPTION` si la valeur est `null`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur est `null`|
 
-#### notNullException <a id="notNullException"></a>####
+**`notNullException`<a id="notNullException"></a>**
 
-> Lance une exception `NOT_NULL_EXCEPTION` si la valeur n'est pas `null`
+Lance une exception `NOT_NULL_EXCEPTION` si la valeur n'est pas `null`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur n'est pas `null`|
 
-#### undefinedException <a id="undefinedException"></a>####
+**`undefinedException`<a id="undefinedException"></a>**
 
-> Lance une exception `UNDEFINED_EXCEPTION` si la valeur est `undefined`
+Lance une exception `UNDEFINED_EXCEPTION` si la valeur est `undefined`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur est `undefined`|
 
-#### notUndefinedException <a id="notUndefinedException"></a>####
+**`notUndefinedException`<a id="notUndefinedException"></a>**
 
-> Lance une exception `NOT_UNDEFINED_EXCEPTION` si la valeur n'est pas `undefined`
+Lance une exception `NOT_UNDEFINED_EXCEPTION` si la valeur n'est pas `undefined`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur n'est pas `undefined`|
 
-#### blankException <a id="blankException"></a>####
+**`blankException`<a id="blankException"></a>**
 
-> Lance une exception `BLANK_EXCEPTION` si la valeur est vide (pour un string)
-
-| Argument      |Type                 |Description |
-| ------------- |-------------        | ---------  |
-|value          |unknow               |Valuer à vérifier|
-|message        |string               |Message à afficher si la valeur est vide|
-
-#### notBlankException <a id="notBlankException"></a>####
-
-> Lance une exception `NOT_BLANK_EXCEPTION` si la valeur n'est pas vide (pour un string)
-
-| Argument      |Type                 |Description |
-| ------------- |-------------        | ---------  |
-|value          |unknow               |Valuer à vérifier|
-|message        |string               |Message à afficher si la valeur n'est pas vide|
-
-#### emptyException <a id="emptyException"></a>####
-
-> Lance une exception `EMPTY_EXCEPTION` si la valeur est vide
+Lance une exception `BLANK_EXCEPTION` si la valeur est vide (pour un string)
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur est vide|
 
-#### notEmptyException <a id="notEmptyException"></a>####
+**`notBlankException`<a id="notBlankException"></a>**
 
-> Lance une exception `NOT_EMPTY_EXCEPTION` si la valeur n'est pas vide
+Lance une exception `NOT_BLANK_EXCEPTION` si la valeur n'est pas vide (pour un string)
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur n'est pas vide|
 
-#### booleanException <a id="booleanException"></a>####
+**`emptyException`<a id="emptyException"></a>**
 
-> Lance une exception `BOOLEAN_EXCEPTION` si la valeur est un `boolean`
+Lance une exception `EMPTY_EXCEPTION` si la valeur est vide
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valuer à vérifier|
+|message        |string               |Message à afficher si la valeur est vide|
+
+**`notEmptyException`<a id="notEmptyException"></a>**
+
+Lance une exception `NOT_EMPTY_EXCEPTION` si la valeur n'est pas vide
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valuer à vérifier|
+|message        |string               |Message à afficher si la valeur n'est pas vide|
+
+**`booleanException`<a id="booleanException"></a>**
+
+Lance une exception `BOOLEAN_EXCEPTION` si la valeur est un `boolean`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur est un `boolean`|
 
-#### notBooleanException <a id="notBooleanException"></a>####
+**`notBooleanException`<a id="notBooleanException"></a>**
 
-> Lance une exception `NOT_BOOLEAN_EXCEPTION` si la valeur n'est pas un `boolean`
+Lance une exception `NOT_BOOLEAN_EXCEPTION` si la valeur n'est pas un `boolean`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur n'est pas un `boolean`|
 
-#### numberException <a id="numberException"></a>####
+**`numberException`<a id="numberException"></a>**
 
-> Lance une exception `NUMBER_EXCEPTION` si la valeur est un `number`
+Lance une exception `NUMBER_EXCEPTION` si la valeur est un `number`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur est un `number`|
 
-#### notNumberException <a id="notNumberException"></a>####
+**`notNumberException`<a id="notNumberException"></a>**
 
-> Lance une exception `NOT_NUMBER_EXCEPTION` si la valeur n'est pas un `number`
+Lance une exception `NOT_NUMBER_EXCEPTION` si la valeur n'est pas un `number`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur n'est pas un `number`|
 
-#### stringException <a id="stringException"></a>####
+**`stringException`<a id="stringException"></a>**
 
-> Lance une exception `STRING_EXCEPTION` si la valeur est un `string`
+Lance une exception `STRING_EXCEPTION` si la valeur est un `string`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur est un `string`|
 
-#### notStringException <a id="notStringException"></a>####
+**`notStringException`<a id="notStringException"></a>**
 
-> Lance une exception `NOT_STRING_EXCEPTION` si la valeur n'est pas un `string`
+Lance une exception `NOT_STRING_EXCEPTION` si la valeur n'est pas un `string`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur n'est pas un `string`|
 
-#### objectException <a id="objectException"></a>####
+**`objectException`<a id="objectException"></a>**
 
-> Lance une exception `OBJECT_EXCEPTION` si la valeur est un `object`
+Lance une exception `OBJECT_EXCEPTION` si la valeur est un `object`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur est un `object`|
 
-#### notObjectException <a id="notObjectException"></a>####
+**`notObjectException`<a id="notObjectException"></a>**
 
-> Lance une exception `NOT_OBJECT_EXCEPTION` si la valeur n'est pas un `object`
+Lance une exception `NOT_OBJECT_EXCEPTION` si la valeur n'est pas un `object`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur n'est pas un `object`|
 
-#### arrayException <a id="arrayException"></a>####
+**`arrayException`<a id="arrayException"></a>**
 
-> Lance une exception `ARRAY_EXCEPTION` si la valeur est une `array`
+Lance une exception `ARRAY_EXCEPTION` si la valeur est une `array`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur est une `array`|
 
-#### notArrayException <a id="notArrayException"></a>####
+**`notArrayException`<a id="notArrayException"></a>**
 
-> Lance une exception `NOT_ARRAY_EXCEPTION` si la valeur n'est pas une `array`
+Lance une exception `NOT_ARRAY_EXCEPTION` si la valeur n'est pas une `array`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur n'est pas une `array`|
 
-#### functionException <a id="functionException"></a>####
+**`functionException`<a id="functionException"></a>**
 
-> Lance une exception `FUNCTION_EXCEPTION` si la valeur est une `function`
+Lance une exception `FUNCTION_EXCEPTION` si la valeur est une `function`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur est une `function`|
 
-#### notFunctionException <a id="notFunctionException"></a>####
+**`notFunctionException`<a id="notFunctionException"></a>**
 
-> Lance une exception `NOT_FUNCTION_EXCEPTION` si la valeur n'est pas une `function`
+Lance une exception `NOT_FUNCTION_EXCEPTION` si la valeur n'est pas une `function`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valuer à vérifier|
 |message        |string               |Message à afficher si la valeur n'est pas une `function`|
 
-#### isNullOrUndefined <a id="isNullOrUndefined"></a>####
+**`isNullOrUndefined`<a id="isNullOrUndefined"></a>**
 
-> Test si la valeur est `null` ou `undefined`
-
-| Argument      |Type                 |Description |
-| ------------- |-------------        | ---------  |
-|value          |unknow               |Valeur à tester|
-
-#### isNotNullOrUndefined <a id="isNotNullOrUndefined"></a>####
-
-> Test si la valeur n'est pas `null` ni `undefined`
+Test si la valeur est `null` ou `undefined`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valeur à tester|
 
-#### isBlank <a id="isBlank"></a>####
+**`isNotNullOrUndefined`<a id="isNotNullOrUndefined"></a>**
 
-> Test si la valeur est vide (`undefined`, `null`, `""`, `" "`)
-
-| Argument      |Type                 |Description |
-| ------------- |-------------        | ---------  |
-|value          |unknow               |Valeur à tester|
-
-#### isNotBlank <a id="isNotBlank"></a>####
-
-> Test si la valeur n'est pas vide (`undefined`, `null`, `""`, `" "`)
+Test si la valeur n'est pas `null` ni `undefined`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valeur à tester|
 
-#### isEmpty <a id="isEmpty"></a>####
+**`isBlank`<a id="isBlank"></a>**
 
-> Test si la valeur est vide (tous types)
-
-| Argument      |Type                 |Description |
-| ------------- |-------------        | ---------  |
-|value          |unknow               |Valeur à tester|
-
-#### isNotEmpty <a id="isNotEmpty"></a>####
-
-> Test si la valeur n'est pas vide (tous types)
+Test si la valeur est vide (`undefined`, `null`, `""`, `" "`)
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valeur à tester|
 
-#### oneIsEmpty <a id="oneIsEmpty"></a>####
+**`isNotBlank`<a id="isNotBlank"></a>**
 
-> Test si au moins une des valeurs de la liste est vide
-<br/> ***Exception*** : `NOT_ARRAY_EXCEPTION`
+Test si la valeur n'est pas vide (`undefined`, `null`, `""`, `" "`)
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+**`isEmpty`<a id="isEmpty"></a>**
+
+Test si la valeur est vide (tous types)
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+**`isNotEmpty`<a id="isNotEmpty"></a>**
+
+Test si la valeur n'est pas vide (tous types)
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+**`oneIsEmpty`<a id="oneIsEmpty"></a>**
+
+Test si au moins une des valeurs de la liste est vide<br/>
+***Exception*** : `NOT_ARRAY_EXCEPTION`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |array          |array               |Valeur à tester|
 
-#### isEquals <a id="isEquals"></a>####
+**`isEquals`<a id="isEquals"></a>**
 
-> Test si les deux valeurs sont egales
-<br/> ***Attention*** : utilisation de JSON pour la comparaison
+Test si les deux valeurs sont egales<br/> 
+***Attention*** : utilisation de JSON pour la comparaison
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value1         |unknow               |Valeur 1 à comparer|
 |value2         |unknow               |Valeur 2 à comparer|
 
-#### oneIsEquals <a id="oneIsEquals"></a>####
+**`oneIsEquals`<a id="oneIsEquals"></a>**
 
-> Test si au moins 2 valeurs (de chaque liste) sont égales
-<br/> ***Exception*** : `NOT_ARRAY_EXCEPTION`
+Test si au moins 2 valeurs (de chaque liste) sont égales<br/> 
+***Exception*** : `NOT_ARRAY_EXCEPTION`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |array1         |array               |Liste 1|
 |array2         |array               |Liste 2|
 
-#### contain <a id="contain"></a>####
+**`contain`<a id="contain"></a>**
 
-> Test si la liste contient l'élément
-<br/> ***Exception*** : `NOT_ARRAY_EXCEPTION`
-
-| Argument      |Type                 |Description |
-| ------------- |-------------        | ---------  |
-|array          |array                |Liste à tester|
-|el             |uknow                |Elément |
-
-#### noContain <a id="noContain"></a>####
-
-> Test si la liste ne contient pas l'élément
-<br/> ***Exception*** : `NOT_ARRAY_EXCEPTION`
+Test si la liste contient l'élément<br/> 
+***Exception*** : `NOT_ARRAY_EXCEPTION`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |array          |array                |Liste à tester|
 |el             |uknow                |Elément |
 
-#### clone <a id="clone"></a>####
+**`noContain`<a id="noContain"></a>**
 
-> Clone l'élément
-<br/> ***Exception*** : `UNDEFINED_EXCEPTION`, `FUNCTION_EXCEPTION`
+Test si la liste ne contient pas l'élément<br/> 
+***Exception*** : `NOT_ARRAY_EXCEPTION`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|array          |array                |Liste à tester|
+|el             |uknow                |Elément |
+
+**`clone`<a id="clone"></a>**
+
+Clone l'élément<br/> 
+***Exception*** : `UNDEFINED_EXCEPTION`, `FUNCTION_EXCEPTION`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |element          |uknow              |Elément à cloner|
 
-#### isNull <a id="isNull"></a>####
+**`isNull`<a id="isNull"></a>**
 
-> Test si la valeur est `null`
-
-| Argument      |Type                 |Description |
-| ------------- |-------------        | ---------  |
-|value          |unknow               |Valeur à tester|
-
-#### isNotNull <a id="isNotNull"></a>####
-
-> Test si la valeur n'est pas `null`
+Test si la valeur est `null`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valeur à tester|
 
-#### isUndefined <a id="isUndefined"></a>####
+**`isNotNull`<a id="isNotNull"></a>**
 
-> Test si la valeur est `undefined`
-
-| Argument      |Type                 |Description |
-| ------------- |-------------        | ---------  |
-|value          |unknow               |Valeur à tester|
-
-#### isNotUndefined <a id="isNotUndefined"></a>####
-
-> Test si la valeur n'est pas `undefined`
+Test si la valeur n'est pas `null`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valeur à tester|
 
-#### isBoolean <a id="isBoolean"></a>####
+**`isUndefined`<a id="isUndefined"></a>**
 
-> Test si la valeur est un `boolean`
-
-| Argument      |Type                 |Description |
-| ------------- |-------------        | ---------  |
-|value          |unknow               |Valeur à tester|
-
-#### isNotBoolean <a id="isNotBoolean"></a>####
-
-> Test si la valeur n'est pas un `boolean`
+Test si la valeur est `undefined`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valeur à tester|
 
-#### isNumber <a id="isNumber"></a>####
+**`isNotUndefined`<a id="isNotUndefined"></a>**
 
-> Test si la valeur est un `number`
-
-| Argument      |Type                 |Description |
-| ------------- |-------------        | ---------  |
-|value          |unknow               |Valeur à tester|
-
-#### isNotNumber <a id="isNotNumber"></a>####
-
-> Test si la valeur n'est pas un `number`
+Test si la valeur n'est pas `undefined`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valeur à tester|
 
-#### isString <a id="isString"></a>####
+**`isBoolean`<a id="isBoolean"></a>**
 
-> Test si la valeur est un `string`
-
-| Argument      |Type                 |Description |
-| ------------- |-------------        | ---------  |
-|value          |unknow               |Valeur à tester|
-
-#### isNotString <a id="isNotString"></a>####
-
-> Test si la valeur n'est pas un `string`
+Test si la valeur est un `boolean`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valeur à tester|
 
-#### isObject <a id="isObject"></a>####
+**`isNotBoolean`<a id="isNotBoolean"></a>**
 
-> Test si la valeur est un `object` <br />
+Test si la valeur n'est pas un `boolean`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+**`isNumber`<a id="isNumber"></a>**
+
+Test si la valeur est un `number`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+**`isNotNumber`<a id="isNotNumber"></a>**
+
+Test si la valeur n'est pas un `number`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+**`isString`<a id="isString"></a>**
+
+Test si la valeur est un `string`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+**`isNotString`<a id="isNotString"></a>**
+
+Test si la valeur n'est pas un `string`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+**`isObject`<a id="isObject"></a>**
+
+Test si la valeur est un `object` <br />
 ***Attention*** : Une liste n'est pas considérée comme un objet tout comme la valeur `null`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valeur à tester|
 
-#### isNotObject <a id="isNotObject"></a>####
+**`isNotObject`<a id="isNotObject"></a>**
 
-> Test si la valeur n'est pas un `object` <br />
+Test si la valeur n'est pas un `object` <br />
 ***Attention*** : Une liste n'est pas considérée comme un objet tout comme la valeur `null`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valeur à tester|
 
-#### isArray <a id="isArray"></a>####
+**`isArray`<a id="isArray"></a>**
 
-> Test si la valeur est une `array`
-
-| Argument      |Type                 |Description |
-| ------------- |-------------        | ---------  |
-|value          |unknow               |Valeur à tester|
-
-#### isNotArray <a id="isNotArray"></a>####
-
-> Test si la valeur n'est pas une `array`
+Test si la valeur est une `array`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valeur à tester|
 
-#### isFunction <a id="isFunction"></a>####
+**`isNotArray`<a id="isNotArray"></a>**
 
-> Test si la valeur est une `function`
-
-| Argument      |Type                 |Description |
-| ------------- |-------------        | ---------  |
-|value          |unknow               |Valeur à tester|
-
-#### isNotFunction <a id="isNotFunction"></a>####
-
-> Test si la valeur n'est pas une `function`
+Test si la valeur n'est pas une `array`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valeur à tester|
 
-#### getType <a id="getType"></a>####
+**`isFunction`<a id="isFunction"></a>**
 
-> Retourne le type de la valeur (`UNDEFINED`, `NULL`, `BOOLEAN`, `NUMBER`, `STRING`, `OBJECT`, `ARRAY`, `FUNCTION`) <br />
+Test si la valeur est une `function`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+**`isNotFunction`<a id="isNotFunction"></a>**
+
+Test si la valeur n'est pas une `function`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value          |unknow               |Valeur à tester|
+
+**`getType`<a id="getType"></a>**
+
+Retourne le type de la valeur (`UNDEFINED`, `NULL`, `BOOLEAN`, `NUMBER`, `STRING`, `OBJECT`, `ARRAY`, `FUNCTION`) <br />
 ***Exception*** :  Si la valeur est indéterminée (peu probable)
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valeur à tester|
 
-#### modeDebug <a id="modeDebug"></a>####
+**`modeDebug`<a id="modeDebug"></a>**
 
-> Active/désactive le mode débug <br />
+Active/désactive le mode débug <br />
 ***Exception*** :  `NOT_BOOLEAN_EXCEPTION`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |isModeDebug    |boolean              |Active/désactive le mode débug|
 
-#### debug <a id="debug"></a>####
+**`debug`<a id="debug"></a>**
 
-> Affiche un message dans la console de debug
+Affiche un message dans la console de debug
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |message        |string               |Message à afficher|
 
-#### error <a id="error"></a>####
+**`error`<a id="error"></a>**
 
-> Affiche un message dans la console d'erreur
+Affiche un message dans la console d'erreur
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
@@ -730,9 +730,9 @@ Lance une exception `NULL_OR_UNDEFINED_EXCEPTION` si la valeur est `null` ou `un
 
 ### Méthodes ####
 
-#### sendObject <a id="sendObject"></a>####
+**`sendObject`<a id="sendObject"></a>**
 
-> Envoie un `object` par l'intermédiaire d'une requête Ajax <br />
+Envoie un `object` par l'intermédiaire d'une requête Ajax <br />
 ***Attention*** :  `array` et `null` ne sont pas considérés comme des `object` <br />
 ***Exception*** :  `NOT_OBJECT_EXCEPTION`
 
@@ -741,9 +741,10 @@ Lance une exception `NULL_OR_UNDEFINED_EXCEPTION` si la valeur est `null` ou `un
 |res            |object               |response du framework expressJs|
 |object            |object            |Object à envoyer|
 
-#### sendData <a id="sendData"></a>####
 
-> Envoie des données par l'intermédiaire d'une requête Ajax <br />
+**`sendData`<a id="sendData"></a>**
+
+Envoie des données par l'intermédiaire d'une requête Ajax <br />
 ***Exception*** :  `NOT_OBJECT_EXCEPTION`
 
 | Argument      |Type                 |Description |
@@ -751,9 +752,10 @@ Lance une exception `NULL_OR_UNDEFINED_EXCEPTION` si la valeur est `null` ou `un
 |res            |object               |response du framework expressJs|
 |data           |uknow                |Données à envoyer|
 
-#### sendMessage <a id="sendMessage"></a>####
 
-> Envoie un message par l'intermédiaire d'une requête Ajax <br />
+**`sendMessage`<a id="sendMessage"></a>**
+
+Envoie un message par l'intermédiaire d'une requête Ajax <br />
 ***Exception*** :  `NOT_OBJECT_EXCEPTION`, `NOT_STRING_EXCEPTION`
 
 | Argument      |Type                 |Description |
@@ -761,9 +763,10 @@ Lance une exception `NULL_OR_UNDEFINED_EXCEPTION` si la valeur est `null` ou `un
 |res            |object               |response du framework expressJs|
 |msg            |string               |message à envoyer|
 
-#### sendError <a id="sendError"></a>####
 
-> Envoie un message d'erreur par l'intermédiaire d'une requête Ajax <br />
+**`sendError`<a id="sendError"></a>**
+
+Envoie un message d'erreur par l'intermédiaire d'une requête Ajax <br />
 ***Exception*** :  `NOT_OBJECT_EXCEPTION`, `NOT_STRING_EXCEPTION`
 
 | Argument      |Type                 |Description |
@@ -771,9 +774,9 @@ Lance une exception `NULL_OR_UNDEFINED_EXCEPTION` si la valeur est `null` ou `un
 |res            |object               |response du framework expressJs|
 |msg            |string               |message d'erreur à envoyer|
 
-#### extractParam <a id="extractParam"></a>####
+**`extractParam`<a id="extractParam"></a>**
 
-> Extrait et test le paramètre correspondant au nom <br />
+Extrait et test le paramètre correspondant au nom <br />
 ***Exception*** :  `NOT_OBJECT_EXCEPTION`, `NOT_STRING_EXCEPTION`, `BLANK_EXCEPTION`
 
 | Argument      |Type                 |Description |
