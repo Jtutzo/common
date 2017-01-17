@@ -743,9 +743,9 @@ Affiche un message dans la console d'erreur
 
 ### Méthodes ####
 - [defaultConfAjax](#defaultConfAjax)
-- [defaultConfCache](#defaultConfCache)
-- [sendQuery](#sendQuery)
-- [searchInCache](#searchInCache)
+- [confReferentiel](#confReferentiel)
+- [send](#sendQuery)
+- [toReferentiel](#toReferentiel)
 
 ### Détails ####
 
@@ -758,16 +758,16 @@ Configuration par défaut des requêtes ajax <br />
 | -------------         |-------------        | ---------  |
 |[confAjax](#confAjax)  |object               |Configuartion des requêtes ajax|
 
-**`defaultConfCache`<a id="defaultConfCache"></a>**
+**`confReferentiel`<a id="confReferentiel"></a>**
 
-Configuration par défaut de la cache pour la gestion des éléments issue d'un référentiel (par ex en bdd) <br />
+Configuration de la cache pour la gestion des éléments issue de réferentiel de base de données <br />
 ***Exception*** :  `NOT_OBJECT_EXCEPTION`
 
 | Argument                |Type                 |Description |
 | -------------           |-------------        | ---------  |
-|[confCache](#confCache)  |object               |Configuartion de la cache|
+|[confRef](#confRef)      |object               |Configuartion du référentiel|
 
-**`sendQuery`<a id="send"></a>**
+**`send`<a id="send"></a>**
 
 Envoie une requête ajax <br />
 ***Exception*** :  `NO_DATA_RECEIVED_EXCEPTION`
@@ -776,16 +776,16 @@ Envoie une requête ajax <br />
 | -------------         |-------------        | ---------  |
 |[confAjax](#confAjax)  |object               |Configuartion des requêtes ajax|
 
-**`searchInCache`<a id="confRef"></a>**
+**`toReferentiel`<a id="toReferentiel"></a>**
 
-Envoie une requête ajax et enregistre le résultat dans la cache <br />
+Cherche dans le cache référentiel ou envoie un requête ajax et stoque le résultat dans la cache référentiel <br />
 ***Exception*** :  `NOT_OBJECT_EXCEPTION`, `ARGUMENT_EXCEPTION`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
-|referentiel    |object               |nom du référentiel à remplacer dans l'url|
-|success        |function             |Fonction à executer lorsque la requête retourne 'SUCCESS'|
-|failure        |function             |Fonction à executer lorsque la requête retourne 'ERROR'|
+|name           |object               |nom à remplacer dans l'url (valeur correspopndant à confRef.repalceUrl)|
+|success        |function(resp)       |Fonction à executer lorsque la requête retourne 'SUCCESS'|
+|failure        |function(err)        |Fonction à executer lorsque la requête retourne 'ERROR'|
 
 **`confAjax`<a id="confAjax"></a>**
 
@@ -795,22 +795,22 @@ Objet pour la configuration d'une requête ajax
 | -------------       |-------------        | ---------  |
 |url                  |string               |Url de la requête|
 |data                 |object               |Données de la requête|
-|success              |function             |Fonction à executer lorsque la requête retourne 'SUCCESS'|
-|failure              |function             |Fonction à executer lorsque la requête retourne 'ERROR'|
+|success              |function(resp)       |Fonction à executer lorsque la requête retourne 'SUCCESS'|
+|failure              |function(err)        |Fonction à executer lorsque la requête retourne 'ERROR'|
 |method               |string               |Nom de la méthode ('GET', 'POST'), défaut: POST|
 |async                |boolean              |Synchrone ou asynchrone, défaut: true|
 |labelTechnicalError  |string               |Label de l'erreur technique|
 
-**`confCache`<a id="confCache"></a>**
+**`confRef`<a id="confRef"></a>**
 
-Objet pour la configuration de la cache
+Objet pour la configuration et la gestion de la cache référentiel
 
 | attributs           |Type                 |Description |
 | -------------       |-------------        | ---------  |
 |url                  |string               |Url de la requête|
 |repalceUrl           |object               |Morceau de l'url à remplace par le reférentiel, défaut : "{referentiel}"|
-|success              |function             |Fonction à executer lorsque la requête retourne 'SUCCESS'|
-|failure              |function             |Fonction à executer lorsque la requête retourne 'ERROR'|
+|success              |function(resp)       |Fonction à executer lorsque la requête retourne 'SUCCESS'|
+|failure              |function(err)        |Fonction à executer lorsque la requête retourne 'ERROR'|
 |method               |string               |Nom de la méthode ('GET', 'POST'), défaut: POST|
 |async                |boolean              |Synchrone ou asynchrone, défaut: true|
 |labelTechnicalError  |string               |Label de l'erreur technique|

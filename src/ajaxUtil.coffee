@@ -30,7 +30,7 @@ paramsAjax = {
 }
 
 #default params for referentiel ajax query
-paramsCache = {
+paramsReferentiel = {
     url: "",
     repalceUrl: '{referentiel}',
     success: null,
@@ -40,7 +40,13 @@ paramsCache = {
     labelTechnicalError: "Erreur technique"
 }
 
-cache = []
+#Cache referentiel
+referentiel = {
+    cache: [],
+    alreadySend: [],
+    callbacks: []
+}
+
 
 ###====================================================================================
 #                                   methodes ajax
@@ -54,11 +60,11 @@ defaultConfAjax = (confAjax) -> paramsAjax = newConfAjax confAjax;true
 
     
 ###
-# default's configuration cache
+# default's configuration cache referenteil
 # @param confCache
 # @exception NOT_OBJECT_EXCEPTION
 ###
-defaultConfCache = (confCache) -> paramsCache = newConfCache confCache;true
+confReferentiel = (confRef) -> paramsReferentiel = newConfReferentiel confRef;true
     
 
 ###
@@ -66,7 +72,7 @@ defaultConfCache = (confCache) -> paramsCache = newConfCache confCache;true
 # @param confAjax
 # @exception NO_DATA_RECEIVED_EXCEPTION
 ###
-sendQuery = (confAjax) -> 
+send = (confAjax) -> 
     confAjax = if util.isNullOrUndefiend confAjax then {} else confAjax
     conf = newConfAjax confAjax
     query conf
@@ -74,25 +80,28 @@ sendQuery = (confAjax) ->
 
 
 ###
-# Search in cache (or send query ajax)
-# @param referentiel
+# Search in cache referentiel (or send query ajax)
+# @param name
 # @param success
 # @param failure
 # @exception BLANK_EXCEPTION, NOT_STRING_EXCEPTION, ARGUMENT_EXCEPTION, NO_DATA_RECEIVED_EXCEPTION
 ###
-searchInCache = (referentiel, success, faillure) -> 
-    util.blankException referentiel, "referentiel mustn't be blank (ajaxUtil.searchCache)."
-    util.notStringException referentiel, "referentiel must be a string value (ajaxUtil.searchCache)."
-    if util.isNotBlank cache[referentiel] then response = cache[referentiel];success?(response)
-    else 
-        expr = paramsCache['url'].indexOf(paramsCache['repalceUrl']) < 0;
-        util.argumentException expr, "repalceUrl isn't present in default url (ajaxUtil.searchCache)."
+toReferentiel = (name, success, faillure) -> 
+    util.blankException name, "name mustn't be blank (ajaxUtil.toReferentiel)."
+    util.notStringException name, "name must be a string value (ajaxUtil.toReferentiel)."
+    if util.isNotBlank referentiel['cache'][name] then response = referentiel['cache'][name];success?(response)
+    else if  referentiel['alreadySend'][name] then referentiel.callbacks.push success
+    else
+        expr = paramsReferentiel['url'].indexOf(paramsReferentiel['repalceUrl']) < 0;
+        util.argumentException expr, "repalceUrl isn't present in default url (ajaxUtil.toReferentiel)."
 
-        conf = newConfCache {
-            url: url.replace repalceUrl, referentiel
+        conf = newConfReferentiel {
+            url: url.replace repalceUrl, name
             success: (resp) -> 
                 resp = if util.isNotNullOrUndefined resp then resp.obj else resp
+                referentiel['cache'][name] = resp
                 success?(resp)
+                for callback in referentiel['callbacks'] then callback?(resp)
                 true
             faillure: faillure
         }
@@ -159,11 +168,11 @@ newConfAjax = (conf) ->
 # @private
 # @exception NOT_OBJECT_EXCEPTION, EMPTY_EXCEPTION, NOT_STRING_EXCEPTION, NOT_BOOLEAN_EXCEPTION, ARGUMENT_EXCEPTION
 ###
-newConfCache = (conf) -> 
+newConfReferentiel = (conf) -> 
 
     util.notObjectException conf, "conf must be an object value (util.factoryConfReferentiel)."
 
-    retour = util.clone paramsCache
+    retour = util.clone paramsReferentiel
 
     #url
     if util.isNotNullOrUndefined conf['url']
@@ -277,7 +286,7 @@ module.exports.ERROR = ERROR
 module.exports.NO_DATA_RECEIVED_EXCEPTION = NO_DATA_RECEIVED_EXCEPTION
 
 module.exports.defaultConfAjax = defaultConfAjax
-module.exports.defaultConfCache = defaultConfCache
+module.exports.confReferentiel = confReferentiel
 
-module.exports.sendQuery = sendQuery
-module.exports.searchInCache = searchInCache
+module.exports.send = send
+module.exports.toReferentiel = toReferentiel

@@ -6,7 +6,7 @@
  */
 
 (function() {
-  var $, ERROR, NO_DATA_RECEIVED_EXCEPTION, SUCCESS, cache, defaultConfAjax, defaultConfCache, newConfAjax, newConfCache, paramsAjax, paramsCache, query, searchInCache, sendQuery, toObject, util;
+  var $, ERROR, NO_DATA_RECEIVED_EXCEPTION, SUCCESS, confReferentiel, defaultConfAjax, newConfAjax, newConfReferentiel, paramsAjax, paramsReferentiel, query, referentiel, send, toObject, toReferentiel, util;
 
   $ = require('jquery');
 
@@ -40,7 +40,7 @@
     labelTechnicalError: "Erreur technique"
   };
 
-  paramsCache = {
+  paramsReferentiel = {
     url: "",
     repalceUrl: '{referentiel}',
     success: null,
@@ -50,7 +50,11 @@
     labelTechnicalError: "Erreur technique"
   };
 
-  cache = [];
+  referentiel = {
+    cache: [],
+    alreadySend: [],
+    callbacks: []
+  };
 
 
   /*====================================================================================
@@ -72,13 +76,14 @@
 
 
   /*
-   * default's configuration cache
+   * default's configuration cache referenteil
    * @param confCache
    * @exception NOT_OBJECT_EXCEPTION
    */
 
-  defaultConfCache = function(confCache) {
-    paramsCache = newConfCache(confCache);
+  confReferentiel = function(confRef) {
+    var paramsCache;
+    paramsCache = newConfReferentiel(confRef);
     return true;
   };
 
@@ -89,7 +94,7 @@
    * @exception NO_DATA_RECEIVED_EXCEPTION
    */
 
-  sendQuery = function(confAjax) {
+  send = function(confAjax) {
     var conf;
     confAjax = util.isNullOrUndefiend(confAjax) ? {} : confAjax;
     conf = newConfAjax(confAjax);
@@ -99,31 +104,42 @@
 
 
   /*
-   * Search in cache (or send query ajax)
-   * @param referentiel
+   * Search in cache referentiel (or send query ajax)
+   * @param name
    * @param success
    * @param failure
    * @exception BLANK_EXCEPTION, NOT_STRING_EXCEPTION, ARGUMENT_EXCEPTION, NO_DATA_RECEIVED_EXCEPTION
    */
 
-  searchInCache = function(referentiel, success, faillure) {
+  toReferentiel = function(name, success, faillure) {
     var conf, expr, response;
-    util.blankException(referentiel, "referentiel mustn't be blank (ajaxUtil.searchCache).");
-    util.notStringException(referentiel, "referentiel must be a string value (ajaxUtil.searchCache).");
-    if (util.isNotBlank(cache[referentiel])) {
-      response = cache[referentiel];
+    util.blankException(name, "name mustn't be blank (ajaxUtil.toReferentiel).");
+    util.notStringException(name, "name must be a string value (ajaxUtil.toReferentiel).");
+    if (util.isNotBlank(referentiel['cache'][name])) {
+      response = referentiel['cache'][name];
       if (typeof success === "function") {
         success(response);
       }
+    } else if (referentiel['alreadySend'][name]) {
+      referentiel.callbacks.push(success);
     } else {
       expr = paramsCache['url'].indexOf(paramsCache['repalceUrl']) < 0;
-      util.argumentException(expr, "repalceUrl isn't present in default url (ajaxUtil.searchCache).");
+      util.argumentException(expr, "repalceUrl isn't present in default url (ajaxUtil.toReferentiel).");
       conf = newConfCache({
-        url: url.replace(repalceUrl, referentiel),
+        url: url.replace(repalceUrl, name),
         success: function(resp) {
+          var callback, i, len, ref;
           resp = util.isNotNullOrUndefined(resp) ? resp.obj : resp;
+          referentiel['cache'][name] = resp;
           if (typeof success === "function") {
             success(resp);
+          }
+          ref = referentiel['callbacks'];
+          for (i = 0, len = ref.length; i < len; i++) {
+            callback = ref[i];
+            if (typeof callback === "function") {
+              callback(resp);
+            }
           }
           return true;
         },
@@ -192,10 +208,10 @@
    * @exception NOT_OBJECT_EXCEPTION, EMPTY_EXCEPTION, NOT_STRING_EXCEPTION, NOT_BOOLEAN_EXCEPTION, ARGUMENT_EXCEPTION
    */
 
-  newConfCache = function(conf) {
+  newConfReferentiel = function(conf) {
     var expr, retour;
     util.notObjectException(conf, "conf must be an object value (util.factoryConfReferentiel).");
-    retour = util.clone(paramsCache);
+    retour = util.clone(paramsReferentiel);
     if (util.isNotNullOrUndefined(conf['url'])) {
       util.notStringException(conf['url'], "conf.url must be a string value (util.factoryConfReferentiel).");
       retour['url'] = conf['url'];

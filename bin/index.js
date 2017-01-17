@@ -19,4 +19,6 @@
 
   module.exports.expressUtil = expressUtil;
 
+  ajaxUtil.toReferentiel("pays", function(pays) {});
+
 }).call(this);
