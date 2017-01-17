@@ -1,9 +1,11 @@
 # common #
-Auteur : Jtutzo, dernière version : 1.0.1, statut : stable
+Auteur : Jtutzo, dernière version : 2.0.0, statut : non-testé
 
 > C'est un module qui regroupe des méthodes utils pour l'environement nodeJs.
 Il est composé de sous-modules qui sont les suivants :
  - [util](#util)
+ - [ajaxUtil](#ajaxUtil)
+ - [dateUtil](#dateUtil)
  - [expressUtil](#expressUtil)
 
 
@@ -11,7 +13,7 @@ Il est composé de sous-modules qui sont les suivants :
 
 ### Utilisations ###
 
-`var util = require('common').Util();`
+`var util = require('common').util;`
 
 ### Constantes ###
 - [UNDEFINED](#constUndefined)
@@ -107,7 +109,8 @@ Il est composé de sous-modules qui sont les suivants :
 - [getType](#getType)
 
 ### Méthodes pour le débuggage ###
-- [modeDebug](#modeDebug)
+- [setDebug](#setDebug)
+- [isDebug](#isDebug)
 - [debug](#debug)
 - [error](#error)
 
@@ -511,6 +514,16 @@ Test si les deux valeurs sont egales<br/>
 |value1         |unknow               |Valeur 1 à comparer|
 |value2         |unknow               |Valeur 2 à comparer|
 
+**`isNotEquals`<a id="isNotEquals"></a>**
+
+Test si les deux valeurs ne sont pas egales<br/> 
+***Attention*** : utilisation de JSON pour la comparaison
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|value1         |unknow               |Valeur 1 à comparer|
+|value2         |unknow               |Valeur 2 à comparer|
+
 **`oneIsEquals`<a id="oneIsEquals"></a>**
 
 Test si au moins 2 valeurs (de chaque liste) sont égales<br/> 
@@ -689,14 +702,17 @@ Retourne le type de la valeur (`UNDEFINED`, `NULL`, `BOOLEAN`, `NUMBER`, `STRING
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valeur à tester|
 
-**`modeDebug`<a id="modeDebug"></a>**
+**`setDebug`<a id="setDebug"></a>**
 
 Active/désactive le mode débug <br />
-***Exception*** :  `NOT_BOOLEAN_EXCEPTION`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |isModeDebug    |boolean              |Active/désactive le mode débug|
+
+**`isDebug`<a id="isDebug"></a>**
+
+Indique si le module est en mode debug
 
 **`debug`<a id="debug"></a>**
 
@@ -715,11 +731,178 @@ Affiche un message dans la console d'erreur
 |message        |string               |Message à afficher|
 
 
+## ajaxUtil <a id="ajaxUtil"></a>##
+
+### Utilisations ###
+
+`var ajaxUtil = require('common').ajaxUtil;`
+
+### Constantes ###
+- [SUCCESS](#SUCCESS)
+- [ERROR](#ERROR)
+
+### Méthodes ####
+- [defaultConfAjax](#defaultConfAjax)
+- [defaultConfCache](#defaultConfCache)
+- [sendQuery](#sendQuery)
+- [searchInCache](#searchInCache)
+
+### Détails ####
+
+**`defaultConfAjax`<a id="defaultConfAjax"></a>**
+
+Configuration par défaut des requêtes ajax <br />
+***Exception*** :  `NOT_OBJECT_EXCEPTION`
+
+| Argument              |Type                 |Description |
+| -------------         |-------------        | ---------  |
+|[confAjax](#confAjax)  |object               |Configuartion des requêtes ajax|
+
+**`defaultConfCache`<a id="defaultConfCache"></a>**
+
+Configuration par défaut de la cache pour la gestion des éléments issue d'un référentiel (par ex en bdd) <br />
+***Exception*** :  `NOT_OBJECT_EXCEPTION`
+
+| Argument                |Type                 |Description |
+| -------------           |-------------        | ---------  |
+|[confCache](#confCache)  |object               |Configuartion de la cache|
+
+**`sendQuery`<a id="send"></a>**
+
+Envoie une requête ajax <br />
+***Exception*** :  `NO_DATA_RECEIVED_EXCEPTION`
+
+| Argument              |Type                 |Description |
+| -------------         |-------------        | ---------  |
+|[confAjax](#confAjax)  |object               |Configuartion des requêtes ajax|
+
+**`searchInCache`<a id="confRef"></a>**
+
+Envoie une requête ajax et enregistre le résultat dans la cache <br />
+***Exception*** :  `NOT_OBJECT_EXCEPTION`, `ARGUMENT_EXCEPTION`
+
+| Argument      |Type                 |Description |
+| ------------- |-------------        | ---------  |
+|referentiel    |object               |nom du référentiel à remplacer dans l'url|
+|success        |function             |Fonction à executer lorsque la requête retourne 'SUCCESS'|
+|failure        |function             |Fonction à executer lorsque la requête retourne 'ERROR'|
+
+**`confAjax`<a id="confAjax"></a>**
+
+Objet pour la configuration d'une requête ajax
+
+| attributs           |Type                 |Description |
+| -------------       |-------------        | ---------  |
+|url                  |string               |Url de la requête|
+|data                 |object               |Données de la requête|
+|success              |function             |Fonction à executer lorsque la requête retourne 'SUCCESS'|
+|failure              |function             |Fonction à executer lorsque la requête retourne 'ERROR'|
+|method               |string               |Nom de la méthode ('GET', 'POST'), défaut: POST|
+|async                |boolean              |Synchrone ou asynchrone, défaut: true|
+|labelTechnicalError  |string               |Label de l'erreur technique|
+
+**`confCache`<a id="confCache"></a>**
+
+Objet pour la configuration de la cache
+
+| attributs           |Type                 |Description |
+| -------------       |-------------        | ---------  |
+|url                  |string               |Url de la requête|
+|repalceUrl           |object               |Morceau de l'url à remplace par le reférentiel, défaut : "{referentiel}"|
+|success              |function             |Fonction à executer lorsque la requête retourne 'SUCCESS'|
+|failure              |function             |Fonction à executer lorsque la requête retourne 'ERROR'|
+|method               |string               |Nom de la méthode ('GET', 'POST'), défaut: POST|
+|async                |boolean              |Synchrone ou asynchrone, défaut: true|
+|labelTechnicalError  |string               |Label de l'erreur technique|
+
+
+## dateUtil <a id="dateUtil"></a>##
+
+### Utilisations ###
+
+`var dateUtil = require('common').dateUtil;`
+
+### Constantes <a id="constantes_date"></a>###
+- [DATE_FR](#constDateFr)
+- [DATE_FR_2](#constDateFr2)
+- [DATE_FR_3](#constDateFr3)
+- [DATE_FR_4](#constDateFr4)
+- [DATE_EN](#constDateEn)
+- [DATE_EN_2](#constDateEn2)
+- [DATE_EN_3](#constDateEn3)
+- [DATE_EN_4](#constDateEn4)
+
+### Méthodes ####
+- [toBuild](#toBuild)
+- [toFormat](#toFormat)
+- [isValide](#isValide)
+
+### Détails ####
+
+**`DATE_FR`<a id="constDateFr"></a>**
+
+Date au format FR (par défaut) : `DD/MM/YYYY`
+
+**`DATE_FR_2`<a id="constDateFr2"></a>**
+
+Date au format FR (2) : `DD/MM/YY`
+
+**`DATE_FR_3`<a id="constDateFr3"></a>**
+
+Date au format FR (3) : `DD-MM-YYYY`
+
+**`DATE_FR_4`<a id="constDateFr4"></a>**
+
+Date au format FR (4) : `DD-MM-YY`
+
+**`DATE_EN`<a id="constDateEn"></a>**
+
+Date au format EN (par défaut) : `MM/DD/YYYY`
+
+**`DATE_EN_2`<a id="constDateEn2"></a>**
+
+Date au format EN (2) : `MM/DD/YY`
+
+**`DATE_EN_3`<a id="constDateEn3"></a>**
+
+Date au format EN (3) : `MM-DD-YYYY`
+
+**`DATE_EN_4`<a id="constDateEn4"></a>**
+
+Date au format EN (4) : `MM-DD-YY`
+
+**`toBuild`<a id="toBuild"></a>**
+
+Créer une nouvelle date à partir d'un `string`
+
+| Argument              |Type                 |Description |
+| -------------         |-------------        | ---------  |
+|dateString             |string               |Date au format string|
+|format                 |string               |format de dateString (voir [constantes](#constantes_date))|
+
+**`toFormat`<a id="toFormat"></a>**
+
+Formate la date en `string`
+
+| Argument              |Type                 |Description |
+| -------------         |-------------        | ---------  |
+|date                   |date                 |Date à formater|
+|format                 |string               |format du formatage (voir [constantes](#constantes_date))|
+
+**`isValide`<a id="isValide"></a>**
+
+Test si la valeur est une date valide
+
+| Argument              |Type                 |Description |
+| -------------         |-------------        | ---------  |
+|value                  |unknow               |Valeur à tester|
+
+
 ## expressUtil <a id="expressUtil"></a>##
 
 ### Utilisations ###
 
-`var expressUtil = require('common').ExpressUtil();`
+`var expressUtil = require('common').expressUtil;`
 
 ### Méthodes ####
 - [sendObject](#sendObject)
@@ -728,7 +911,7 @@ Affiche un message dans la console d'erreur
 - [sendError](#sendError)
 - [extractParam](#extractParam)
 
-### Méthodes ####
+### Détails ####
 
 **`sendObject`<a id="sendObject"></a>**
 
@@ -741,7 +924,6 @@ Envoie un `object` par l'intermédiaire d'une requête Ajax <br />
 |res            |object               |response du framework expressJs|
 |object            |object            |Object à envoyer|
 
-
 **`sendData`<a id="sendData"></a>**
 
 Envoie des données par l'intermédiaire d'une requête Ajax <br />
@@ -752,7 +934,6 @@ Envoie des données par l'intermédiaire d'une requête Ajax <br />
 |res            |object               |response du framework expressJs|
 |data           |uknow                |Données à envoyer|
 
-
 **`sendMessage`<a id="sendMessage"></a>**
 
 Envoie un message par l'intermédiaire d'une requête Ajax <br />
@@ -762,7 +943,6 @@ Envoie un message par l'intermédiaire d'une requête Ajax <br />
 | ------------- |-------------        | ---------  |
 |res            |object               |response du framework expressJs|
 |msg            |string               |message à envoyer|
-
 
 **`sendError`<a id="sendError"></a>**
 
