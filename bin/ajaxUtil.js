@@ -82,8 +82,7 @@
    */
 
   confReferentiel = function(confRef) {
-    var paramsCache;
-    paramsCache = newConfReferentiel(confRef);
+    paramsReferentiel = newConfReferentiel(confRef);
     return true;
   };
 
@@ -123,9 +122,9 @@
     } else if (referentiel['alreadySend'][name]) {
       referentiel.callbacks.push(success);
     } else {
-      expr = paramsCache['url'].indexOf(paramsCache['repalceUrl']) < 0;
+      expr = paramsReferentiel['url'].indexOf(paramsReferentiel['repalceUrl']) < 0;
       util.argumentException(expr, "repalceUrl isn't present in default url (ajaxUtil.toReferentiel).");
-      conf = newConfCache({
+      conf = newConfReferentiel({
         url: url.replace(repalceUrl, name),
         success: function(resp) {
           var callback, i, len, ref;
@@ -372,10 +371,10 @@
 
   module.exports.defaultConfAjax = defaultConfAjax;
 
-  module.exports.defaultConfCache = defaultConfCache;
+  module.exports.confReferentiel = confReferentiel;
 
-  module.exports.sendQuery = sendQuery;
+  module.exports.send = send;
 
-  module.exports.searchInCache = searchInCache;
+  module.exports.toReferentiel = toReferentiel;
 
 }).call(this);
