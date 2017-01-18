@@ -1,5 +1,5 @@
 # common #
-Auteur : Jtutzo, dernière version : 2.0.0, statut : non-testé
+Auteur : Jtutzo, dernière version : 2.1.0, statut : stable
 
 > C'est un module qui regroupe des méthodes utils pour l'environement nodeJs.
 Il est composé de sous-modules qui sont les suivants :
@@ -495,9 +495,7 @@ Test si la valeur n'est pas vide (tous types)
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valeur à tester|
 
-~~**`oneIsEmpty`<a id="oneIsEmpty"></a>**~~
-***Attention*** : Cette fonction n'existe plus depuis la version 2.1.0
-
+~~**`oneIsEmpty`<a id="oneIsEmpty"></a>**~~ Cette fonction n'existe plus depuis la version 2.1.0<br />
 Test si au moins une des valeurs de la liste est vide<br/>
 ***Exception*** : `NOT_ARRAY_EXCEPTION`
 
@@ -525,10 +523,8 @@ Test si les deux valeurs ne sont pas egales<br/>
 |value1         |unknow               |Valeur 1 à comparer|
 |value2         |unknow               |Valeur 2 à comparer|
 
-~~**`oneIsEquals`<a id="oneIsEquals"></a>**~~
-
-Test si au moins 2 valeurs (de chaque liste) sont égales<br/> 
-***Attention*** : Cette fonction n'existe plus depuis la version 2.1.0
+**~~`oneIsEquals`<a id="oneIsEquals"></a>~~**Cette fonction n'existe plus depuis la version 2.1.0<br />
+Test si au moins 2 valeurs (de chaque liste) sont égales<br/>
 ***Exception*** : `NOT_ARRAY_EXCEPTION`
 
 | Argument      |Type                 |Description |
