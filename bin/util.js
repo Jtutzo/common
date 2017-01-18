@@ -6,7 +6,7 @@
  */
 
 (function() {
-  var ARGUMENT_EXCEPTION, ARRAY, ARRAY_EXCEPTION, BLANK_EXCEPTION, BOOLEAN, BOOLEAN_EXCEPTION, EMPTY_EXCEPTION, FUNCTION, FUNCTION_EXCEPTION, NOT_ARRAY_EXCEPTION, NOT_BLANK_EXCEPTION, NOT_BOOLEAN_EXCEPTION, NOT_EMPTY_EXCEPTION, NOT_FUNCTION_EXCEPTION, NOT_NULL_EXCEPTION, NOT_NULL_OR_UNDEFINED_EXCEPTION, NOT_NUMBER_EXCEPTION, NOT_OBJECT_EXCEPTION, NOT_STRING_EXCEPTION, NOT_UNDEFINED_EXCEPTION, NULL, NULL_EXCEPTION, NULL_OR_UNDEFINED_EXCEPTION, NUMBER, NUMBER_EXCEPTION, OBJECT, OBJECT_EXCEPTION, STRING, STRING_EXCEPTION, UNDEFINED, UNDEFINED_EXCEPTION, argumentException, arrayException, blankException, booleanException, clone, contain, debug, emptyException, error, functionException, getType, isArray, isBlank, isBoolean, isDebug, isEmpty, isEquals, isFunction, isModeDebug, isNotArray, isNotBlank, isNotBoolean, isNotEmpty, isNotEquals, isNotFunction, isNotNull, isNotNullOrUndefined, isNotNumber, isNotObject, isNotString, isNotUndefined, isNull, isNullOrUndefined, isNumber, isObject, isString, isUndefined, noContain, notArrayException, notBlankException, notBooleanException, notEmptyException, notFunctionException, notNullException, notNullOrUndefinedException, notNumberException, notObjectException, notStringException, notUndefinedException, nullException, nullOrUndefinedException, numberException, objectException, oneIsEmpty, oneIsEquals, setDebug, stringException, undefinedException;
+  var ARGUMENT_EXCEPTION, ARRAY, ARRAY_EXCEPTION, BLANK_EXCEPTION, BOOLEAN, BOOLEAN_EXCEPTION, EMPTY_EXCEPTION, FUNCTION, FUNCTION_EXCEPTION, NOT_ARRAY_EXCEPTION, NOT_BLANK_EXCEPTION, NOT_BOOLEAN_EXCEPTION, NOT_EMPTY_EXCEPTION, NOT_FUNCTION_EXCEPTION, NOT_NULL_EXCEPTION, NOT_NULL_OR_UNDEFINED_EXCEPTION, NOT_NUMBER_EXCEPTION, NOT_OBJECT_EXCEPTION, NOT_STRING_EXCEPTION, NOT_UNDEFINED_EXCEPTION, NULL, NULL_EXCEPTION, NULL_OR_UNDEFINED_EXCEPTION, NUMBER, NUMBER_EXCEPTION, OBJECT, OBJECT_EXCEPTION, STRING, STRING_EXCEPTION, UNDEFINED, UNDEFINED_EXCEPTION, argumentException, arrayException, blankException, booleanException, clone, contains, debug, emptyException, error, functionException, getType, isArray, isBlank, isBoolean, isDebug, isEmpty, isEquals, isFunction, isModeDebug, isNotArray, isNotBlank, isNotBoolean, isNotEmpty, isNotEquals, isNotFunction, isNotNull, isNotNullOrUndefined, isNotNumber, isNotObject, isNotString, isNotUndefined, isNull, isNullOrUndefined, isNumber, isObject, isString, isUndefined, noContains, notArrayException, notBlankException, notBooleanException, notEmptyException, notFunctionException, notNullException, notNullOrUndefinedException, notNumberException, notObjectException, notStringException, notUndefinedException, nullException, nullOrUndefinedException, numberException, objectException, setDebug, stringException, undefinedException;
 
   UNDEFINED = 'undefined';
 
@@ -91,7 +91,7 @@
       error("util.argumentException => expr must be a boolean expression.");
       throw new Error(ARGUMENT_EXCEPTION);
     }
-    if (!isBlank(message && !isString(message))) {
+    if ((isBlank(message)) && (isNotString(message))) {
       error("util.argumentException => message must be a string value.");
       throw new Error(ARGUMENT_EXCEPTION);
     }
@@ -113,7 +113,7 @@
 
   nullOrUndefinedException = function(value, message) {
     var exception;
-    if (isNull(value || isUndefined(value))) {
+    if ((isNull(value)) || (isUndefined(value))) {
       exception = NULL_OR_UNDEFINED_EXCEPTION + (!isBlank(message) ? ": " + message : ".");
       error("util.nullOrUndefinedException => value is null or undefined [" + exception + "]");
       throw new Error(NULL_OR_UNDEFINED_EXCEPTION);
@@ -131,7 +131,7 @@
 
   notNullOrUndefinedException = function(value, message) {
     var exception;
-    if (isNotNull(value || isNotUndefined(value))) {
+    if ((isNotNull(value)) && (isNotUndefined(value))) {
       exception = NOT_NULL_OR_UNDEFINED_EXCEPTION + (!isBlank(message) ? ": " + message : ".");
       error("util.notNullOrUndefinedException => value isn't null or unedfined [" + exception + "]");
       throw new Error(NOT_NULL_OR_UNDEFINED_EXCEPTION);
@@ -539,7 +539,7 @@
    */
 
   isBlank = function(value) {
-    if ((isNull(value)) || (isUndefined(value)) || ((isString(value)) && value.trim === 0)) {
+    if ((isNull(value)) || (isUndefined(value)) || ((isString(value)) && value.trim() === "")) {
       debug("util.isBlank => value is blank.");
       return true;
     } else {
@@ -565,7 +565,7 @@
    */
 
   isEmpty = function(value) {
-    if ((isBlank(value)) || ((isObject(value)) && Object.keys(value).length === 0) || (isArray(valvalue.length === 0))) {
+    if ((isBlank(value)) || ((isObject(value)) && Object.keys(value).length === 0) || ((isArray(value)) && value.length === 0)) {
       debug("util.isEmpty => value is empty.");
       return true;
     } else {
@@ -586,41 +586,29 @@
 
 
   /*
-   * Check if at least values is empty
-   * @param values (array)
-   * @exception NOT_ARRAY_EXCEPTION
-   */
-
-  oneIsEmpty = function(array) {
-    var i, len, value;
-    notArrayException(array, "array must be an array value (util.oneIsEmpty).");
-    for (i = 0, len = array.length; i < len; i++) {
-      value = array[i];
-      if (isEmpty(value)) {
-        debug("util.oneIsEmpty => at least value is empty.");
-        return true;
-      }
-    }
-    debug("util.oneIsEmpty => any value is empty.");
-    return false;
-  };
-
-
-  /*
    * Check if value1 and value2 are equals
    * Caution : use JSON for camparaison !
    * @param value1
    * @param value2
+   * @exception FUNCTION_EXCEPTION
    */
 
   isEquals = function(value1, value2) {
-    if (JSON.stringify(obj1) === JSON.stringify(obj2)) {
+    var result;
+    functionException(value1, "value1 mustn't be a function (util.isEquals)");
+    functionException(value2, "value2 mustn't be a function (util.isEquals)");
+    result = false;
+    if ((isNullOrUndefined(value1)) || (isNullOrUndefined(value2))) {
       debug("util.isEquals => value1 is equal to value2.");
-      return true;
+      result = value1 === value2;
+    } else if (JSON.stringify(value1) === JSON.stringify(value2)) {
+      debug("util.isEquals => value1 is equal to value2.");
+      result = true;
     } else {
       debug("util.isEquals => value1 isn't equal to value2.");
-      return false;
+      result = false;
     }
+    return result;
   };
 
 
@@ -629,36 +617,11 @@
    * Caution : use JSON for camparaison !
    * @param value1
    * @param value2
+   * @exception FUNCTION_EXCEPTION
    */
 
   isNotEquals = function(value1, value2) {
-    return !isNotEquals(array, seq);
-  };
-
-
-  /*
-   * Check if at least value is equals
-   * @param array1
-   * @param array2
-   * @exception NOT_ARRAY_EXCEPTION
-   */
-
-  oneIsEquals = function(array1, array2) {
-    var i, j, len, len1, value1, value2;
-    notArrayException(array1, "array1 must be an array value (util.oneIsEquals).");
-    notArrayException(array2, "array2 must be an array value (util.oneIsEquals).");
-    for (i = 0, len = array1.length; i < len; i++) {
-      value1 = array1[i];
-      for (j = 0, len1 = array2.length; j < len1; j++) {
-        value2 = array2[j];
-        if (value1 === value2) {
-          debug("util.oneIsEquals => at least value are equals.");
-          return true;
-        }
-      }
-    }
-    debug("util.oneIsEquals => no value are equals.");
-    return false;
+    return !isEquals(value1, value2);
   };
 
 
@@ -669,18 +632,30 @@
    * @exception NOT_ARRAY_EXCEPTION
    */
 
-  contain = function(array, seq) {
-    var i, len, value;
+  contains = function(array, seq) {
+    var i, j, k, len, len1, result, value, value2;
     notArrayException(array, "array must be an array value.");
-    for (i = 0, len = array.length; i < len; i++) {
-      value = array[i];
-      if ((util.isObject(seq)) && (JSON.stringify(value) === JSON.stringify(seq))) {
-        return true;
-      } else if (value === seq) {
-        return true;
+    seq = isArray(seq) ? seq : [seq];
+    i = 0;
+    for (j = 0, len = seq.length; j < len; j++) {
+      value = seq[j];
+      result = false;
+      if (i === array.length) {
+        return false;
+      }
+      for (k = 0, len1 = array.length; k < len1; k++) {
+        value2 = array[k];
+        if (isEquals(value, value2)) {
+          result = true;
+          break;
+        }
+      }
+      i++;
+      if (!result) {
+        return false;
       }
     }
-    return false;
+    return true;
   };
 
 
@@ -691,8 +666,8 @@
   * @exception NOT_ARRAY_EXCEPTION
    */
 
-  noContain = function(array, seq) {
-    return !contain(array, seq);
+  noContains = function(array, seq) {
+    return !contains(array, seq);
   };
 
 
@@ -946,10 +921,7 @@
    */
 
   getType = function(value) {
-    if (isUndefined(value)) {
-      debug("util.getType => value is " + UNDEFINED + ".");
-      return UNDEFINED;
-    } else if (isNull(value)) {
+    if (isNull(value)) {
       debug("util.getType => value is " + NULL + ".");
       return NULL;
     } else if (isBoolean(value)) {
@@ -971,8 +943,8 @@
       debug("util.getType => value is " + FUNCTION + ".");
       return FUNCTION;
     } else {
-      error("util.getType => type unknow.");
-      throw new Error("util.getType => type unknow.");
+      debug("util.getType => value is " + UNDEFINED + ".");
+      return UNDEFINED;
     }
   };
 
@@ -1150,17 +1122,13 @@
 
   module.exports.isNotEmpty = isNotEmpty;
 
-  module.exports.oneIsEmpty = oneIsEmpty;
-
   module.exports.isEquals = isEquals;
 
   module.exports.isNotEquals = isNotEquals;
 
-  module.exports.oneIsEquals = oneIsEquals;
+  module.exports.contains = contains;
 
-  module.exports.contain = contain;
-
-  module.exports.noContain = noContain;
+  module.exports.noContains = noContains;
 
   module.exports.clone = clone;
 

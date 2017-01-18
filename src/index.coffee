@@ -9,5 +9,3 @@ module.exports.util = util
 module.exports.dateUtil = dateUtil
 module.exports.ajaxUtil = ajaxUtil
 module.exports.expressUtil = expressUtil
-
-ajaxUtil.toReferentiel "pays" , (pays) -> 

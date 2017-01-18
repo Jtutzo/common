@@ -66,24 +66,24 @@
   /*
    * default's configuration ajax query
    * @param confAjax
+   * @return confAjax
    * @exception NOT_OBJECT_EXCEPTION
    */
 
   defaultConfAjax = function(confAjax) {
-    paramsAjax = newConfAjax(confAjax);
-    return true;
+    return paramsAjax = newConfAjax(util.isUndefined(confAjax) ? {} : confAjax);
   };
 
 
   /*
    * default's configuration cache referenteil
    * @param confCache
+   * @return confRef 
    * @exception NOT_OBJECT_EXCEPTION
    */
 
   confReferentiel = function(confRef) {
-    paramsReferentiel = newConfReferentiel(confRef);
-    return true;
+    return paramsReferentiel = newConfReferentiel(util.isUndefined(confRef) ? {} : confRef);
   };
 
 

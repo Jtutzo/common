@@ -64,7 +64,7 @@ argumentException = (expr, message) ->
         error "util.argumentException => expr must be a boolean expression."
         throw new Error ARGUMENT_EXCEPTION
             
-    if !isBlank message && !isString message
+    if (isBlank message) and (isNotString message)
         error "util.argumentException => message must be a string value."
         throw new Error ARGUMENT_EXCEPTION
                 
@@ -81,7 +81,7 @@ argumentException = (expr, message) ->
 # @param message
 ###
 nullOrUndefinedException = (value, message) -> 
-    if isNull value || isUndefined value
+    if (isNull value) or (isUndefined value)
         exception = NULL_OR_UNDEFINED_EXCEPTION + if !isBlank message then ": " + message else "."
         error "util.nullOrUndefinedException => value is null or undefined [" + exception + "]"
         throw new Error NULL_OR_UNDEFINED_EXCEPTION
@@ -94,7 +94,7 @@ nullOrUndefinedException = (value, message) ->
 # @param message
 ###
 notNullOrUndefinedException = (value, message) -> 
-    if isNotNull value || isNotUndefined value 
+    if (isNotNull value) and (isNotUndefined value) 
         exception = NOT_NULL_OR_UNDEFINED_EXCEPTION + if !isBlank message then ": " + message else "."
         error "util.notNullOrUndefinedException => value isn't null or unedfined [" + exception + "]"
         throw new Error NOT_NULL_OR_UNDEFINED_EXCEPTION
@@ -386,7 +386,7 @@ isNotNullOrUndefined = (value) -> not isNullOrUndefined value
 # @param value
 ###
 isBlank = (value) -> 
-    if (isNull value) or (isUndefined value) or ((isString value) and value.trim is 0)
+    if (isNull value) or (isUndefined value) or ((isString value) and value.trim() is "")
         debug "util.isBlank => value is blank.";true
     else debug "util.isBlank => value isn't blank.";false
         
@@ -403,7 +403,7 @@ isNotBlank = (value) -> not isBlank value
 # @param value
 ###
 isEmpty = (value) -> 
-    if (isBlank value) or ((isObject value) and Object.keys(value).length is 0) or (isArray valvalue.length is 0)
+    if (isBlank value) or ((isObject value) and Object.keys(value).length is 0) or ((isArray value) and  value.length is 0)
         debug "util.isEmpty => value is empty.";true
     else debug "util.isEmpty => value isn't empty.";false
         
@@ -416,26 +416,21 @@ isNotEmpty = (value) -> not isEmpty value
         
         
 ###
-# Check if at least values is empty
-# @param values (array)
-# @exception NOT_ARRAY_EXCEPTION
-###
-oneIsEmpty = (array) -> 
-    notArrayException array, "array must be an array value (util.oneIsEmpty)."
-    for value in array
-        if isEmpty value then debug "util.oneIsEmpty => at least value is empty.";return true
-    debug "util.oneIsEmpty => any value is empty.";false
-        
-        
-###
 # Check if value1 and value2 are equals
 # Caution : use JSON for camparaison !
 # @param value1
 # @param value2
+# @exception FUNCTION_EXCEPTION
 ###
 isEquals = (value1, value2) -> 
-    if JSON.stringify(obj1) is JSON.stringify(obj2) then debug "util.isEquals => value1 is equal to value2.";true;
-    else debug "util.isEquals => value1 isn't equal to value2.";false
+    functionException value1, "value1 mustn't be a function (util.isEquals)"
+    functionException value2, "value2 mustn't be a function (util.isEquals)"
+    result = false
+    if (isNullOrUndefined value1) or (isNullOrUndefined value2)
+        debug "util.isEquals => value1 is equal to value2.";result = value1 is value2
+    else if JSON.stringify(value1) is JSON.stringify(value2) then debug "util.isEquals => value1 is equal to value2.";result = true
+    else debug "util.isEquals => value1 isn't equal to value2.";result = false
+    result
      
 
 ###
@@ -443,24 +438,9 @@ isEquals = (value1, value2) ->
 # Caution : use JSON for camparaison !
 # @param value1
 # @param value2
+# @exception FUNCTION_EXCEPTION
 ###
-isNotEquals = (value1, value2) -> not isNotEquals array, seq
-
-
-###
-# Check if at least value is equals
-# @param array1
-# @param array2
-# @exception NOT_ARRAY_EXCEPTION
-###
-oneIsEquals = (array1, array2) -> 
-    notArrayException array1, "array1 must be an array value (util.oneIsEquals)."
-    notArrayException array2, "array2 must be an array value (util.oneIsEquals)."
-    for value1 in array1
-        for value2 in array2
-            if value1 is value2 then debug "util.oneIsEquals => at least value are equals.";return true
-    debug "util.oneIsEquals => no value are equals.";false
-        
+isNotEquals = (value1, value2) -> not isEquals value1, value2
         
 ###
 # Check if array contain seq
@@ -468,23 +448,29 @@ oneIsEquals = (array1, array2) ->
 # @param seq
 # @exception NOT_ARRAY_EXCEPTION
 ###
-contain = (array, seq) -> 
+contains = (array, seq) -> 
     notArrayException array, "array must be an array value."
-    for value in array
-        if (util.isObject seq) and (JSON.stringify(value) is JSON.stringify seq) then return true
-        else if value is seq then return true
-    false
-        
-        
+    seq = if isArray seq then seq else [seq]
+    i = 0
+    for value in seq
+        result = false
+        if i is array.length then return false
+        for value2 in array 
+            if isEquals value, value2 then result = true;break
+        i++
+        if !result then return false
+    true
+
+    
 ###
 * Check if array no contain seq
 * @param array
 * @param seq
 * @exception NOT_ARRAY_EXCEPTION
 ###
-noContain = (array, seq) -> not contain array, seq
+noContains = (array, seq) -> not contains array, seq
         
-        
+  
 ###
 * clone an element
 * @param element
@@ -655,15 +641,14 @@ isNotFunction = (value) -> not isFunction value
 # @exception if type is unknow
 ###
 getType = (value) -> 
-    if isUndefined value then debug "util.getType => value is " + UNDEFINED + ".";UNDEFINED
-    else if isNull value then debug "util.getType => value is " + NULL + ".";NULL
+    if isNull value then debug "util.getType => value is " + NULL + ".";NULL
     else if isBoolean value then debug "util.getType => value is " + BOOLEAN + ".";BOOLEAN
     else if isNumber value then debug "util.getType => value is " + NUMBER + ".";NUMBER
     else if isString value then debug "util.getType => value is " + STRING + ".";STRING
     else if isObject value then debug "util.getType => value is " + OBJECT + ".";OBJECT
     else if isArray value then debug "util.getType => value is " + ARRAY + ".";ARRAY
     else if isFunction value then debug "util.getType => value is " + FUNCTION + ".";FUNCTION
-    else error "util.getType => type unknow.";throw new Error "util.getType => type unknow."
+    else debug "util.getType => value is " + UNDEFINED + ".";UNDEFINED
     
     
 ###====================================================================================
@@ -763,12 +748,10 @@ module.exports.isBlank = isBlank
 module.exports.isNotBlank = isNotBlank
 module.exports.isEmpty = isEmpty
 module.exports.isNotEmpty = isNotEmpty
-module.exports.oneIsEmpty = oneIsEmpty
 module.exports.isEquals = isEquals
 module.exports.isNotEquals = isNotEquals
-module.exports.oneIsEquals = oneIsEquals
-module.exports.contain = contain
-module.exports.noContain = noContain
+module.exports.contains = contains
+module.exports.noContains = noContains
 module.exports.clone = clone
 
 module.exports.isNull = isNull

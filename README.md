@@ -82,9 +82,9 @@ Il est composé de sous-modules qui sont les suivants :
 - [isNotBlank](#isNotBlank)
 - [isEmpty](#isEmpty)
 - [isNotEmpty](#isNotEmpty)
-- [oneIsEmpty](#oneIsEmpty)
+- ~~[oneIsEmpty](#oneIsEmpty)~~
 - [isEquals](#isEquals)
-- [oneIsEquals](#oneIsEquals)
+- ~~[oneIsEquals](#oneIsEquals)~~
 - [contain](#contain)
 - [noContain](#noContain)
 - [clone](#clone)
@@ -495,7 +495,8 @@ Test si la valeur n'est pas vide (tous types)
 | ------------- |-------------        | ---------  |
 |value          |unknow               |Valeur à tester|
 
-**`oneIsEmpty`<a id="oneIsEmpty"></a>**
+~~**`oneIsEmpty`<a id="oneIsEmpty"></a>**~~
+***Attention*** : Cette fonction n'existe plus depuis la version 2.1.0
 
 Test si au moins une des valeurs de la liste est vide<br/>
 ***Exception*** : `NOT_ARRAY_EXCEPTION`
@@ -507,7 +508,7 @@ Test si au moins une des valeurs de la liste est vide<br/>
 **`isEquals`<a id="isEquals"></a>**
 
 Test si les deux valeurs sont egales<br/> 
-***Attention*** : utilisation de JSON pour la comparaison
+***Exception*** : `FUNCTION_EXCEPTION`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
@@ -517,16 +518,17 @@ Test si les deux valeurs sont egales<br/>
 **`isNotEquals`<a id="isNotEquals"></a>**
 
 Test si les deux valeurs ne sont pas egales<br/> 
-***Attention*** : utilisation de JSON pour la comparaison
+***Exception*** : `FUNCTION_EXCEPTION`
 
 | Argument      |Type                 |Description |
 | ------------- |-------------        | ---------  |
 |value1         |unknow               |Valeur 1 à comparer|
 |value2         |unknow               |Valeur 2 à comparer|
 
-**`oneIsEquals`<a id="oneIsEquals"></a>**
+~~**`oneIsEquals`<a id="oneIsEquals"></a>**~~
 
 Test si au moins 2 valeurs (de chaque liste) sont égales<br/> 
+***Attention*** : Cette fonction n'existe plus depuis la version 2.1.0
 ***Exception*** : `NOT_ARRAY_EXCEPTION`
 
 | Argument      |Type                 |Description |
@@ -753,19 +755,21 @@ Affiche un message dans la console d'erreur
 
 Configuration par défaut des requêtes ajax <br />
 ***Exception*** :  `NOT_OBJECT_EXCEPTION`
+***Retourne*** :  configuration de l'ajax
 
 | Argument              |Type                 |Description |
 | -------------         |-------------        | ---------  |
-|[confAjax](#confAjax)  |object               |Configuartion des requêtes ajax|
+|[confAjax](#confAjax)  |object or undefined  |Configuartion des requêtes ajax|
 
 **`confReferentiel`<a id="confReferentiel"></a>**
 
 Configuration de la cache pour la gestion des éléments issue de réferentiel de base de données <br />
 ***Exception*** :  `NOT_OBJECT_EXCEPTION`
+***Retourne*** :  configuration du reférentiel
 
 | Argument                |Type                 |Description |
 | -------------           |-------------        | ---------  |
-|[confRef](#confRef)      |object               |Configuartion du référentiel|
+|[confRef](#confRef)      |object or undefined  |Configuartion du référentiel|
 
 **`send`<a id="send"></a>**
 

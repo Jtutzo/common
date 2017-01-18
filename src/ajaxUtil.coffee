@@ -54,17 +54,19 @@ referentiel = {
 ###
 # default's configuration ajax query
 # @param confAjax
+# @return confAjax
 # @exception NOT_OBJECT_EXCEPTION
 ###
-defaultConfAjax = (confAjax) -> paramsAjax = newConfAjax confAjax;true
+defaultConfAjax = (confAjax) -> paramsAjax = newConfAjax if util.isUndefined confAjax then {} else confAjax
 
     
 ###
 # default's configuration cache referenteil
 # @param confCache
+# @return confRef 
 # @exception NOT_OBJECT_EXCEPTION
 ###
-confReferentiel = (confRef) -> paramsReferentiel = newConfReferentiel confRef;true
+confReferentiel = (confRef) -> paramsReferentiel = newConfReferentiel if util.isUndefined confRef then {} else confRef
     
 
 ###

@@ -1,11 +1,13 @@
 {
   "name": "common",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Common module for dev",
   "main": "./bin/index.js",
   "scripts": {
-    "compile": "coffee -co bin src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "coffee -co bin src & coffee -co ./spec ./spec",
+    "test": "coffee -co bin src & coffee -co ./spec ./spec & jasmine-node spec",
+    "start": "coffee -co bin src & coffee -co ./spec ./spec & node",
+    "debug": "coffee -co bin src & coffee -co ./spec ./spec & node-debug"
   },
   "keywords": [
     "custom",
