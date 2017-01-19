@@ -2,7 +2,7 @@
 (function() {
   var util;
 
-  util = require('../bin/util.js');
+  util = require('../bin/util');
 
   describe("Test la librairie util du module common\n", function() {
 

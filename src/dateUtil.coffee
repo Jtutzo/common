@@ -20,20 +20,31 @@ DATE_EN_4 = 'MM-DD-YY'
 
 #regex for formatted date
 regexFormat = {
-    'DD/MM/YYYY': [/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3"],
-    'DD/MM/YY': [/(\d{2})\/(\d{2})\/(\d{2})/, "$2/$1/$3"],
-    'DD/MM/YYYY': [/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"],
-    'DD/MM/YY': [/(\d{2})-(\d{2})-(\d{2})/, "$2/$1/$3"],
-    'MM/DD/YYYY': [/(\d{2})\/(\d{2})\/(\d{4})/, "$1/$2/$3"],
-    'MM/DD/YY': [/(\d{2})\/(\d{2})\/(\d{2})/, "$1/$2/$3"],
-    'MM/DD/YYYY': [/(\d{2})-(\d{2})-(\d{4})/, "$1/$2/$3"],
-    'MM/DD/YY': [/(\d{2})-(\d{2})-(\d{2})/, "$1/$2/$3"]
+    'DD/MM/YYYY': {regex: /(\d{2})\/(\d{2})\/(\d{4})/, result: "$2/$1/$3"},
+    'DD/MM/YY': {regex: /(\d{2})\/(\d{2})\/(\d{2})/, result: "$2/$1/$3"},
+    'DD-MM-YYYY': {regex: /(\d{2})-(\d{2})-(\d{4})/, result: "$2/$1/$3"},
+    'DD-MM-YY': {regex: /(\d{2})-(\d{2})-(\d{2})/, result: "$2/$1/$3"},
+    'MM/DD/YYYY': {regex: /(\d{2})\/(\d{2})\/(\d{4})/, result: "$1/$2/$3"},
+    'MM/DD/YY': {regex: /(\d{2})\/(\d{2})\/(\d{2})/, result: "$1/$2/$3"},
+    'MM/DD/YYYY': {regex: /(\d{2})-(\d{2})-(\d{4})/, result: "$1/$2/$3"},
+    'MM/DD/YY': {regex: /(\d{2})-(\d{2})-(\d{2})/, result: "$1/$2/$3"}
 }
 
+defaultFormat = DATE_EN
 
 ###====================================================================================
 #                                   methodes date
 #===================================================================================###
+###
+# Set default format
+# @param format
+# @exception ARGUMENT_EXCEPTION
+###
+setDefaultFormat = (format) -> 
+    util.argumentException util.isNotObject(regexFormat[format]), "bad format (util.setDefaultFormat)"
+    defaultFormat = format 
+
+
 ###
 # Create a new date
 # @param dateString
@@ -42,9 +53,10 @@ regexFormat = {
 ###
 toBuild = (dateString, format) -> 
     date = null;
-    if util.isNullOrUndefined dateString then date = null
-    else if util.isArray regexFormat[format] then date = new Date dateString.replace regexFormat[format][0], regexFormat[format][1]
-    else date = new Date dateString
+    if util.isNotString dateString then date = null
+    else if util.isObject regexFormat[format]
+            date = new Date dateString.replace regexFormat[format]['regex'], regexFormat[format]['result']
+    else date = new Date dateString.replace regexFormat[defaultFormat]['regex'], regexFormat[defaultFormat]['result']
     date
         
         
@@ -53,12 +65,11 @@ toBuild = (dateString, format) ->
 # @param date
 # @param format
 # @return string
-# @exception NOT_STRING_EXCEPTION, ARGUMENT_EXCEPTION
+# @exception ARGUMENT_EXCEPTION
 ###
 toFormat = (date, format) -> 
-    util.notStringException format, "dateUtil.toFormat => format must be an string value."
     util.argumentException isValideDate(date), "dateUtil.toFormat => date isn't a date value."
-    moment(date).format format
+    if util.isObject regexFormat[format] then moment(date).format format else moment(date).format defaultFormat
             
         
 ###
@@ -67,7 +78,7 @@ toFormat = (date, format) ->
 # @return boolean
 ###
 isValide = (value) -> 
-    if (util.isObject date) and isNaN date.getTime() then true
+    if (util.isObject date) and not isNaN date.getTime() then true
     else false
 
 
@@ -83,6 +94,7 @@ module.exports.DATE_EN_2 = DATE_EN_2
 module.exports.DATE_EN_3 = DATE_EN_3
 module.exports.DATE_EN_4 = DATE_EN_4
 
+module.exports.setDefaultFormat = setDefaultFormat
 module.exports.toBuild = toBuild
 module.exports.toFormat = toFormat
 module.exports.isValide = isValide

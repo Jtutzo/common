@@ -1,5 +1,5 @@
 # common #
-Auteur : Jtutzo, dernière version : 2.1.0, statut : stable
+Auteur : Jtutzo, dernière version : 2.1.1, statut : stable
 
 > C'est un module qui regroupe des méthodes utils pour l'environement nodeJs.
 Il est composé de sous-modules qui sont les suivants :
@@ -84,6 +84,7 @@ Il est composé de sous-modules qui sont les suivants :
 - [isNotEmpty](#isNotEmpty)
 - ~~[oneIsEmpty](#oneIsEmpty)~~
 - [isEquals](#isEquals)
+- [isNotEquals](#isNotEquals)
 - ~~[oneIsEquals](#oneIsEquals)~~
 - [contain](#contain)
 - [noContain](#noContain)
@@ -833,6 +834,7 @@ Objet pour la configuration et la gestion de la cache référentiel
 - [DATE_EN_4](#constDateEn4)
 
 ### Méthodes ####
+- [setDefaultFormat](#setDefaultFormat)
 - [toBuild](#toBuild)
 - [toFormat](#toFormat)
 - [isValide](#isValide)
@@ -871,6 +873,14 @@ Date au format EN (3) : `MM-DD-YYYY`
 
 Date au format EN (4) : `MM-DD-YY`
 
+**`setDefaultFormat`<a id="setDefaultFormat"></a>**
+
+Change le format par défaut (à l'origine [DATE_EN](#constDateEn))
+
+| Argument              |Type                 |Description |
+| -------------         |-------------        | ---------  |
+|format                 |string               |Nouveau format par défaut|
+
 **`toBuild`<a id="toBuild"></a>**
 
 Créer une nouvelle date à partir d'un `string`
@@ -883,6 +893,7 @@ Créer une nouvelle date à partir d'un `string`
 **`toFormat`<a id="toFormat"></a>**
 
 Formate la date en `string`
+***Exception*** :  `ARGUMENT_EXCEPTION`
 
 | Argument              |Type                 |Description |
 | -------------         |-------------        | ---------  |

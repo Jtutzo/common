@@ -6,7 +6,7 @@
  */
 
 (function() {
-  var DATE_EN, DATE_EN_2, DATE_EN_3, DATE_EN_4, DATE_FR, DATE_FR_2, DATE_FR_3, DATE_FR_4, isValide, moment, regexFormat, toBuild, toFormat, util;
+  var DATE_EN, DATE_EN_2, DATE_EN_3, DATE_EN_4, DATE_FR, DATE_FR_2, DATE_FR_3, DATE_FR_4, defaultFormat, isValide, moment, regexFormat, setDefaultFormat, toBuild, toFormat, util;
 
   moment = require('moment');
 
@@ -35,21 +35,59 @@
   DATE_EN_4 = 'MM-DD-YY';
 
   regexFormat = {
-    'DD/MM/YYYY': [/(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3"],
-    'DD/MM/YY': [/(\d{2})\/(\d{2})\/(\d{2})/, "$2/$1/$3"],
-    'DD/MM/YYYY': [/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"],
-    'DD/MM/YY': [/(\d{2})-(\d{2})-(\d{2})/, "$2/$1/$3"],
-    'MM/DD/YYYY': [/(\d{2})\/(\d{2})\/(\d{4})/, "$1/$2/$3"],
-    'MM/DD/YY': [/(\d{2})\/(\d{2})\/(\d{2})/, "$1/$2/$3"],
-    'MM/DD/YYYY': [/(\d{2})-(\d{2})-(\d{4})/, "$1/$2/$3"],
-    'MM/DD/YY': [/(\d{2})-(\d{2})-(\d{2})/, "$1/$2/$3"]
+    'DD/MM/YYYY': {
+      regex: /(\d{2})\/(\d{2})\/(\d{4})/,
+      result: "$2/$1/$3"
+    },
+    'DD/MM/YY': {
+      regex: /(\d{2})\/(\d{2})\/(\d{2})/,
+      result: "$2/$1/$3"
+    },
+    'DD-MM-YYYY': {
+      regex: /(\d{2})-(\d{2})-(\d{4})/,
+      result: "$2/$1/$3"
+    },
+    'DD-MM-YY': {
+      regex: /(\d{2})-(\d{2})-(\d{2})/,
+      result: "$2/$1/$3"
+    },
+    'MM/DD/YYYY': {
+      regex: /(\d{2})\/(\d{2})\/(\d{4})/,
+      result: "$1/$2/$3"
+    },
+    'MM/DD/YY': {
+      regex: /(\d{2})\/(\d{2})\/(\d{2})/,
+      result: "$1/$2/$3"
+    },
+    'MM/DD/YYYY': {
+      regex: /(\d{2})-(\d{2})-(\d{4})/,
+      result: "$1/$2/$3"
+    },
+    'MM/DD/YY': {
+      regex: /(\d{2})-(\d{2})-(\d{2})/,
+      result: "$1/$2/$3"
+    }
   };
+
+  defaultFormat = DATE_EN;
 
 
   /*====================================================================================
    *                                   methodes date
   #===================================================================================
    */
+
+
+  /*
+   * Set default format
+   * @param format
+   * @exception ARGUMENT_EXCEPTION
+   */
+
+  setDefaultFormat = function(format) {
+    util.argumentException(util.isNotObject(regexFormat[format]), "bad format (util.setDefaultFormat)");
+    return defaultFormat = format;
+  };
 
 
   /*
@@ -62,12 +100,12 @@
   toBuild = function(dateString, format) {
     var date;
     date = null;
-    if (util.isNullOrUndefined(dateString)) {
+    if (util.isNotString(dateString)) {
       date = null;
-    } else if (util.isArray(regexFormat[format])) {
-      date = new Date(dateString.replace(regexFormat[format][0], regexFormat[format][1]));
+    } else if (util.isObject(regexFormat[format])) {
+      date = new Date(dateString.replace(regexFormat[format]['regex'], regexFormat[format]['result']));
     } else {
-      date = new Date(dateString);
+      date = new Date(dateString.replace(regexFormat[defaultFormat]['regex'], regexFormat[defaultFormat]['result']));
     }
     return date;
   };
@@ -78,13 +116,16 @@
    * @param date
    * @param format
    * @return string
-   * @exception NOT_STRING_EXCEPTION, ARGUMENT_EXCEPTION
+   * @exception ARGUMENT_EXCEPTION
    */
 
   toFormat = function(date, format) {
-    util.notStringException(format, "dateUtil.toFormat => format must be an string value.");
     util.argumentException(isValideDate(date), "dateUtil.toFormat => date isn't a date value.");
-    return moment(date).format(format);
+    if (util.isObject(regexFormat[format])) {
+      return moment(date).format(format);
+    } else {
+      return moment(date).format(defaultFormat);
+    }
   };
 
 
@@ -95,7 +136,7 @@
    */
 
   isValide = function(value) {
-    if ((util.isObject(date)) && isNaN(date.getTime())) {
+    if ((util.isObject(date)) && !isNaN(date.getTime())) {
       return true;
     } else {
       return false;
@@ -123,6 +164,8 @@
   module.exports.DATE_EN_3 = DATE_EN_3;
 
   module.exports.DATE_EN_4 = DATE_EN_4;
+
+  module.exports.setDefaultFormat = setDefaultFormat;
 
   module.exports.toBuild = toBuild;
 
