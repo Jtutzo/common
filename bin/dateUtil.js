@@ -59,11 +59,11 @@
       regex: /(\d{2})\/(\d{2})\/(\d{2})/,
       result: "$1/$2/$3"
     },
-    'MM/DD/YYYY': {
+    'MM-DD-YYYY': {
       regex: /(\d{2})-(\d{2})-(\d{4})/,
       result: "$1/$2/$3"
     },
-    'MM/DD/YY': {
+    'MM-DD-YY': {
       regex: /(\d{2})-(\d{2})-(\d{2})/,
       result: "$1/$2/$3"
     }
@@ -120,7 +120,7 @@
    */
 
   toFormat = function(date, format) {
-    util.argumentException(isValideDate(date), "dateUtil.toFormat => date isn't a date value.");
+    util.argumentException(!isValide(date), "dateUtil.toFormat => date isn't a date value.");
     if (util.isObject(regexFormat[format])) {
       return moment(date).format(format);
     } else {
@@ -136,7 +136,7 @@
    */
 
   isValide = function(value) {
-    if ((util.isObject(date)) && !isNaN(date.getTime())) {
+    if ((value instanceof Date) && !isNaN(value.getTime())) {
       return true;
     } else {
       return false;

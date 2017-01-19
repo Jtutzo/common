@@ -7,14 +7,14 @@
   describe("Test la librairie utilDate du module common\n", function() {
 
     /*====================================================================================
-     *                         Tests des methodes 
+     *                               Tests des methodes 
     #===================================================================================
      */
 
     /*
      * Test de la méthode toBuild
      */
-    return describe("Test de la méthode : toBuild\n", function() {
+    describe("Test de la méthode : toBuild\n", function() {
       it("Creer une date au format 'DD/MM/YYYY avec dateString = null, devrait retourner null", function() {
         return expect(dateUtil.toBuild(null, "DD/MM/YYYY")).toBeNull();
       });
@@ -48,7 +48,7 @@
       it("Creer une date au format 'MM-DD-YY, devrait retourner une date valide correspondant à 24/10/1993", function() {
         return expect(dateUtil.toBuild("10-24-93", "MM-DD-YY")).toEqual(new Date("10/24/1993"));
       });
-      it("Creer une date au format 'MM-DD-YY, devrait retourner une date invalide", function() {
+      it("Creer une date bidon au format 'MM-DD-YY, devrait retourner une date invalide", function() {
         return expect((dateUtil.toBuild("blabla", "MM-DD-YY")).getTime()).toBeNaN();
       });
       it("Creer une date sans format, devrait retourner une date valide correspondant à 24/10/1993", function() {
@@ -69,12 +69,125 @@
         return expect(dateUtil.toBuild("10/24/1993", "bidon")).toEqual(new Date("10/24/1993"));
       });
     });
+
+    /*
+     * Test de la méthode toFormat
+     */
+    describe("Test de la méthode : toFormat\n", function() {
+      it("Date = null, devrait lancer l'exception ArgumentException", function() {
+        return expect(function() {
+          return dateUtil.toFormat(null, "DD/MM/YYYY");
+        }).toThrow("ArgumentException");
+      });
+      it("Date = undefined, devrait lancer l'exception ArgumentException", function() {
+        return expect(function() {
+          return dateUtil.toFormat(void 0, "DD/MM/YYYY");
+        }).toThrow("ArgumentException");
+      });
+      it("Date = {}, devrait lancer l'exception ArgumentException", function() {
+        return expect(function() {
+          return dateUtil.toFormat({}, "DD/MM/YYYY");
+        }).toThrow("ArgumentException");
+      });
+      it("Date = Invalide date, devrait lancer l'exception ArgumentException", function() {
+        return expect(function() {
+          return dateUtil.toFormat(new Date(0/0), "MM-DD-YY");
+        }).toThrow("ArgumentException");
+      });
+      it("Date = 10/24/1993, devrait retourner '24/10/1993'", function() {
+        return expect(dateUtil.toFormat(new Date("10/24/1993"), "DD/MM/YYYY")).toBe("24/10/1993");
+      });
+      it("Date = 10/24/1993, devrait retourner '24/10/93'", function() {
+        return expect(dateUtil.toFormat(new Date("10/24/1993"), "DD/MM/YY")).toBe("24/10/93");
+      });
+      it("Date = 10/24/1993, devrait retourner '24-10-1993'", function() {
+        return expect(dateUtil.toFormat(new Date("10/24/1993"), "DD-MM-YYYY")).toBe("24-10-1993");
+      });
+      it("Date = 10/24/1993, devrait retourner '24-10-93'", function() {
+        return expect(dateUtil.toFormat(new Date("10/24/1993"), "DD-MM-YY")).toBe("24-10-93");
+      });
+      it("Date = 10/24/1993, devrait retourner '10/24/1993'", function() {
+        return expect(dateUtil.toFormat(new Date("10/24/1993"), "MM/DD/YYYY")).toBe("10/24/1993");
+      });
+      it("Date = 10/24/1993, devrait retourner '10/24/93'", function() {
+        return expect(dateUtil.toFormat(new Date("10/24/1993"), "MM/DD/YY")).toBe("10/24/93");
+      });
+      it("Date = 10/24/1993, devrait retourner '10-24-1993'", function() {
+        return expect(dateUtil.toFormat(new Date("10/24/1993"), "MM-DD-YYYY")).toBe("10-24-1993");
+      });
+      it("Date = 10/24/1993, devrait retourner '10-24-93'", function() {
+        return expect(dateUtil.toFormat(new Date("10/24/1993"), "MM-DD-YY")).toBe("10-24-93");
+      });
+      it("Date = 10/24/1993, sans format, devrait retourner '10/24/1993'", function() {
+        return expect(dateUtil.toFormat(new Date("10/24/1993"))).toBe("10/24/1993");
+      });
+      it("Change le format par défaut, devrait retourner '24/10/1993'", function() {
+        dateUtil.setDefaultFormat("DD/MM/YYYY");
+        expect(dateUtil.toFormat(new Date("10/24/1993"))).toBe("24/10/1993");
+        return dateUtil.setDefaultFormat("MM/DD/YYYY");
+      });
+      it("Avec format {}, devrait retourner '10/24/1993'", function() {
+        return expect(dateUtil.toFormat(new Date("10/24/1993"), {})).toBe("10/24/1993");
+      });
+      return it("Avec format 'bidon', devrait retourner '10/24/1993'", function() {
+        return expect(dateUtil.toFormat(new Date("10/24/1993"), "bidon")).toBe("10/24/1993");
+      });
+    });
+
+    /*
+     * Test de la méthode isValide
+     */
+    return describe("Test de la méthode : isValide\n", function() {
+      it("Date = null, devrait retourner false", function() {
+        return expect(dateUtil.isValide(null)).toBe(false);
+      });
+      it("Date = undefined, devrait retourner false", function() {
+        return expect(dateUtil.isValide(void 0)).toBe(false);
+      });
+      it("Date = false, devrait retourner false", function() {
+        return expect(dateUtil.isValide(false)).toBe(false);
+      });
+      it("Date = true, devrait retourner false", function() {
+        return expect(dateUtil.isValide(true)).toBe(false);
+      });
+      it("Date = 0, devrait retourner false", function() {
+        return expect(dateUtil.isValide(0)).toBe(false);
+      });
+      it("Date = 1, devrait retourner false", function() {
+        return expect(dateUtil.isValide(1)).toBe(false);
+      });
+      it("Date = NaN, devrait retourner false", function() {
+        return expect(dateUtil.isValide(0/0)).toBe(false);
+      });
+      it("Date = '', devrait retourner false", function() {
+        return expect(dateUtil.isValide("")).toBe(false);
+      });
+      it("Date = 'abc', devrait retourner false", function() {
+        return expect(dateUtil.isValide("abc")).toBe(false);
+      });
+      it("Date = {}, devrait retourner false", function() {
+        return expect(dateUtil.isValide({})).toBe(false);
+      });
+      it("Date = {getTime: () -> return 1}, devrait retourner false", function() {
+        return expect(dateUtil.isValide({
+          getTime: function() {
+            return 1;
+          }
+        })).toBe(false);
+      });
+      it("Date = [], devrait retourner false", function() {
+        return expect(dateUtil.isValide([])).toBe(false);
+      });
+      it("Date = (() ->), devrait retourner false", function() {
+        return expect(dateUtil.isValide((function() {}))).toBe(false);
+      });
+      it("Date = new Date 10/24/1993, devrait retourner true", function() {
+        return expect(dateUtil.isValide(new Date("10/24/1993"))).toBe(true);
+      });
+      return it("Date = new Date NaN, devrait retourner false", function() {
+        return expect(dateUtil.isValide(new Date(0/0))).toBe(false);
+      });
+    });
   });
-
-
-  /*
-  var dateUtil = require('./bin/dateUtil');
-  dateUtil.toBuild('24/10/1993', 'DD/MM/YYYY');
-   */
 
 }).call(this);

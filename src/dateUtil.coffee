@@ -26,8 +26,8 @@ regexFormat = {
     'DD-MM-YY': {regex: /(\d{2})-(\d{2})-(\d{2})/, result: "$2/$1/$3"},
     'MM/DD/YYYY': {regex: /(\d{2})\/(\d{2})\/(\d{4})/, result: "$1/$2/$3"},
     'MM/DD/YY': {regex: /(\d{2})\/(\d{2})\/(\d{2})/, result: "$1/$2/$3"},
-    'MM/DD/YYYY': {regex: /(\d{2})-(\d{2})-(\d{4})/, result: "$1/$2/$3"},
-    'MM/DD/YY': {regex: /(\d{2})-(\d{2})-(\d{2})/, result: "$1/$2/$3"}
+    'MM-DD-YYYY': {regex: /(\d{2})-(\d{2})-(\d{4})/, result: "$1/$2/$3"},
+    'MM-DD-YY': {regex: /(\d{2})-(\d{2})-(\d{2})/, result: "$1/$2/$3"}
 }
 
 defaultFormat = DATE_EN
@@ -68,7 +68,7 @@ toBuild = (dateString, format) ->
 # @exception ARGUMENT_EXCEPTION
 ###
 toFormat = (date, format) -> 
-    util.argumentException isValideDate(date), "dateUtil.toFormat => date isn't a date value."
+    util.argumentException not isValide(date), "dateUtil.toFormat => date isn't a date value."
     if util.isObject regexFormat[format] then moment(date).format format else moment(date).format defaultFormat
             
         
@@ -78,7 +78,7 @@ toFormat = (date, format) ->
 # @return boolean
 ###
 isValide = (value) -> 
-    if (util.isObject date) and not isNaN date.getTime() then true
+    if (value instanceof Date) and not isNaN value.getTime() then true
     else false
 
 
