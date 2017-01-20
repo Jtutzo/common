@@ -741,17 +741,17 @@ Affiche un message dans la console d'erreur
 - [ERROR](#ERROR)
 
 ### Méthodes ####
-- [defaultConfAjax](#defaultConfAjax)
+- [confAjax](#defaultConfAjax)
 - [confReferentiel](#confReferentiel)
-- [send](#sendQuery)
+- [toSend](#toSend)
 - [toReferentiel](#toReferentiel)
 
 ### Détails ####
 
-**`defaultConfAjax`<a id="defaultConfAjax"></a>**
+**`confAjax`<a id="defaultConfAjax"></a>**
 
 Configuration par défaut des requêtes ajax <br />
-***Exception*** :  `NOT_OBJECT_EXCEPTION`
+***Exception*** :  `NOT_OBJECT_EXCEPTION`<br />
 ***Retourne*** :  configuration de l'ajax
 
 | Argument              |Type                 |Description |
@@ -761,14 +761,14 @@ Configuration par défaut des requêtes ajax <br />
 **`confReferentiel`<a id="confReferentiel"></a>**
 
 Configuration de la cache pour la gestion des éléments issue de réferentiel de base de données <br />
-***Exception*** :  `NOT_OBJECT_EXCEPTION`
+***Exception*** :  `NOT_OBJECT_EXCEPTION`<br />
 ***Retourne*** :  configuration du reférentiel
 
 | Argument                |Type                 |Description |
 | -------------           |-------------        | ---------  |
 |[confRef](#confRef)      |object or undefined  |Configuartion du référentiel|
 
-**`send`<a id="send"></a>**
+**`toSend`<a id="toSend"></a>**
 
 Envoie une requête ajax <br />
 ***Exception*** :  `NO_DATA_RECEIVED_EXCEPTION`

@@ -57,7 +57,7 @@ referentiel = {
 # @return confAjax
 # @exception NOT_OBJECT_EXCEPTION
 ###
-defaultConfAjax = (confAjax) -> paramsAjax = newConfAjax if util.isUndefined confAjax then {} else confAjax
+confAjax = (confAjax) -> paramsAjax = newConfAjax if util.isUndefined confAjax then {} else confAjax
 
     
 ###
@@ -74,8 +74,8 @@ confReferentiel = (confRef) -> paramsReferentiel = newConfReferentiel if util.is
 # @param confAjax
 # @exception NO_DATA_RECEIVED_EXCEPTION
 ###
-send = (confAjax) -> 
-    confAjax = if util.isNullOrUndefiend confAjax then {} else confAjax
+toSend = (confAjax) -> 
+    confAjax = if util.isNullOrUndefined confAjax then {} else confAjax
     conf = newConfAjax confAjax
     query conf
     true
