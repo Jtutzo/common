@@ -960,8 +960,8 @@
    * @param modeDebug
    */
 
-  setDebug = function(isModeDebug) {
-    return isModeDebug = isModeDebug ? true : false;
+  setDebug = function(isDebug) {
+    return isModeDebug = isDebug ? true : false;
   };
 
 

@@ -6,7 +6,7 @@
  */
 
 (function() {
-  var $, ERROR, NO_DATA_RECEIVED_EXCEPTION, SUCCESS, confReferentiel, defaultConfAjax, newConfAjax, newConfReferentiel, paramsAjax, paramsReferentiel, query, referentiel, send, toObject, toReferentiel, util;
+  var $, ERROR, NO_DATA_RECEIVED_EXCEPTION, SUCCESS, confAjax, confReferentiel, newConfAjax, newConfReferentiel, paramsAjax, paramsReferentiel, query, referentiel, toObject, toReferentiel, toSend, util;
 
   $ = require('jquery');
 
@@ -70,7 +70,7 @@
    * @exception NOT_OBJECT_EXCEPTION
    */
 
-  defaultConfAjax = function(confAjax) {
+  confAjax = function(confAjax) {
     return paramsAjax = newConfAjax(util.isUndefined(confAjax) ? {} : confAjax);
   };
 
@@ -93,9 +93,9 @@
    * @exception NO_DATA_RECEIVED_EXCEPTION
    */
 
-  send = function(confAjax) {
+  toSend = function(confAjax) {
     var conf;
-    confAjax = util.isNullOrUndefiend(confAjax) ? {} : confAjax;
+    confAjax = util.isNullOrUndefined(confAjax) ? {} : confAjax;
     conf = newConfAjax(confAjax);
     query(conf);
     return true;
@@ -111,7 +111,7 @@
    */
 
   toReferentiel = function(name, success, faillure) {
-    var conf, expr, response;
+    var expr, response;
     util.blankException(name, "name mustn't be blank (ajaxUtil.toReferentiel).");
     util.notStringException(name, "name must be a string value (ajaxUtil.toReferentiel).");
     if (util.isNotBlank(referentiel['cache'][name])) {
@@ -124,12 +124,13 @@
     } else {
       expr = paramsReferentiel['url'].indexOf(paramsReferentiel['repalceUrl']) < 0;
       util.argumentException(expr, "repalceUrl isn't present in default url (ajaxUtil.toReferentiel).");
-      conf = newConfReferentiel({
-        url: url.replace(repalceUrl, name),
+      query(newConfReferentiel({
+        url: paramsReferentiel['url'].replace(paramsReferentiel['repalceUrl'], name),
         success: function(resp) {
           var callback, i, len, ref;
-          resp = util.isNotNullOrUndefined(resp) ? resp.obj : resp;
+          resp = util.isNotNullOrUndefined(resp) ? resp.data : resp;
           referentiel['cache'][name] = resp;
+          success = util.isFunction(success) ? success : paramsReferentiel['success'];
           if (typeof success === "function") {
             success(resp);
           }
@@ -142,9 +143,14 @@
           }
           return true;
         },
-        faillure: faillure
-      });
-      query(conf);
+        faillure: function(err) {
+          faillure = util.isFunction(faillure) ? success : paramsReferentiel['faillure'];
+          if (typeof faillure === "function") {
+            faillure(err);
+          }
+          return true;
+        }
+      }));
     }
     return true;
   };
@@ -219,23 +225,23 @@
       util.notStringException(conf['repalceUrl'], "conf.repalceUrl must be a string value (util.factoryConfReferentiel).");
       retour['repalceUrl'] = util.clone(conf['repalceUrl']);
     }
-    if (isNotUndefined(conf['success'])) {
+    if (util.isNotUndefined(conf['success'])) {
       expr = (util.isNotNull(conf['success'])) && util.isNotFunction(conf['success']);
       util.argumentException(expr, "conf.success must be a null or a function value (util.factoryParamsAjax).");
       retour['success'] = conf['success'];
     }
-    if (isNotUndefined(conf['failure'])) {
+    if (util.isNotUndefined(conf['failure'])) {
       expr = (util.isNotNull(conf['failure'])) && util.isNotFunction(conf['failure']);
       util.argumentException(expr, "conf.failure must be a null or a function value (util.factoryParamsAjax).");
       retour['failure'] = conf['failure'];
     }
-    if (isNotNullOrUndefined(conf['method'])) {
+    if (util.isNotNullOrUndefined(conf['method'])) {
       util.notStringException(conf['method'], "conf.method must be a string value (util.factoryParamsAjax).");
       expr = conf['method'] !== 'POST' && conf['method'] !== 'GET';
       util.argumentException(expr, "conf.methode must be equals to 'GET' or 'POST' (util.factoryParamsAjax).");
       retour['method'] = conf['method'];
     }
-    if (isNotNullOrUndefined(conf['async'])) {
+    if (util.isNotNullOrUndefined(conf['async'])) {
       util.notBooleanException(conf['async'], "conf.async must be a boolean value (util.factoryParamsAjax).");
       retour['async'] = conf['async'];
     }
@@ -369,11 +375,11 @@
 
   module.exports.NO_DATA_RECEIVED_EXCEPTION = NO_DATA_RECEIVED_EXCEPTION;
 
-  module.exports.defaultConfAjax = defaultConfAjax;
+  module.exports.confAjax = confAjax;
 
   module.exports.confReferentiel = confReferentiel;
 
-  module.exports.send = send;
+  module.exports.toSend = toSend;
 
   module.exports.toReferentiel = toReferentiel;
 

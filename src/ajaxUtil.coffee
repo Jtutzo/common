@@ -97,17 +97,20 @@ toReferentiel = (name, success, faillure) ->
         expr = paramsReferentiel['url'].indexOf(paramsReferentiel['repalceUrl']) < 0;
         util.argumentException expr, "repalceUrl isn't present in default url (ajaxUtil.toReferentiel)."
 
-        conf = newConfReferentiel {
-            url: url.replace repalceUrl, name
+        query newConfReferentiel {
+            url: paramsReferentiel['url'].replace paramsReferentiel['repalceUrl'], name
             success: (resp) -> 
-                resp = if util.isNotNullOrUndefined resp then resp.obj else resp
+                resp = if util.isNotNullOrUndefined resp then resp.data else resp
                 referentiel['cache'][name] = resp
+                success = if util.isFunction success then success else paramsReferentiel['success']
                 success?(resp)
                 for callback in referentiel['callbacks'] then callback?(resp)
                 true
-            faillure: faillure
+            faillure: (err) -> 
+                faillure = if util.isFunction faillure then success else paramsReferentiel['faillure']
+                faillure?(err)
+                true
         }
-        query conf
     true
     
 
@@ -187,26 +190,26 @@ newConfReferentiel = (conf) ->
         retour['repalceUrl'] = util.clone conf['repalceUrl']
 
     #success
-    if isNotUndefined conf['success']
+    if util.isNotUndefined conf['success']
         expr = (util.isNotNull conf['success']) and util.isNotFunction conf['success']
         util.argumentException expr, "conf.success must be a null or a function value (util.factoryParamsAjax)."
         retour['success'] = conf['success']
 
     #failure
-    if isNotUndefined conf['failure']
+    if util.isNotUndefined conf['failure']
         expr = (util.isNotNull conf['failure']) and util.isNotFunction conf['failure']
         util.argumentException expr, "conf.failure must be a null or a function value (util.factoryParamsAjax)."
         retour['failure'] = conf['failure']
 
     #method
-    if isNotNullOrUndefined conf['method']
+    if util.isNotNullOrUndefined conf['method']
         util.notStringException conf['method'], "conf.method must be a string value (util.factoryParamsAjax)."
         expr = conf['method'] isnt 'POST' and conf['method'] isnt 'GET'
         util.argumentException expr, "conf.methode must be equals to 'GET' or 'POST' (util.factoryParamsAjax)."
         retour['method'] = conf['method']
 
     #async
-    if isNotNullOrUndefined conf['async']
+    if util.isNotNullOrUndefined conf['async']
         util.notBooleanException conf['async'], "conf.async must be a boolean value (util.factoryParamsAjax)."
         retour['async'] = conf['async']
 
@@ -287,8 +290,8 @@ module.exports.ERROR = ERROR
 
 module.exports.NO_DATA_RECEIVED_EXCEPTION = NO_DATA_RECEIVED_EXCEPTION
 
-module.exports.defaultConfAjax = defaultConfAjax
+module.exports.confAjax = confAjax
 module.exports.confReferentiel = confReferentiel
 
-module.exports.send = send
+module.exports.toSend = toSend
 module.exports.toReferentiel = toReferentiel

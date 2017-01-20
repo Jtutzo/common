@@ -5,7 +5,8 @@
   "main": "./bin/index.js",
   "scripts": {
     "compile": "coffee -co bin src & coffee -co ./spec ./spec",
-    "test": "coffee -co bin src & coffee -co ./spec ./spec & jasmine-node spec",
+    "build": "coffee -co bin src & coffee -co ./spec ./spec & jasmine-node spec",
+    "test": "jasmine-node spec",
     "start": "coffee -co bin src & coffee -co ./spec ./spec & node",
     "debug": "coffee -co bin src & coffee -co ./spec ./spec & node-debug"
   },

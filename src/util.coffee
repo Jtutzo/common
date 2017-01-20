@@ -658,8 +658,8 @@ getType = (value) ->
 # enable/disable mode debug
 # @param modeDebug
 ###
-setDebug = (isModeDebug) -> 
-    isModeDebug = if isModeDebug then true else false
+setDebug = (isDebug) -> 
+    isModeDebug = if isDebug then true else false
 
 
 ###
