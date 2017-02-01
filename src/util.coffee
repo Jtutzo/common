@@ -293,9 +293,9 @@ objectException = (value, message) ->
         exception = OBJECT_EXCEPTION + if !isBlank message then ": " + message else "."
         error "util.objectException => value is an object [" + exception + "]"
         throw new Error OBJECT_EXCEPTION
-    else debug"util.objectException => value isn't an object."
-            
-        
+    else debug "util.objectException => value isn't an object."
+
+
 ###
 # launch exception (NOT_OBJECT_EXCEPTION) if isn't an object value
 # @param value
@@ -307,8 +307,8 @@ notObjectException = (value, message) ->
         error "util.notObjectException => value isn't an object [" + exception + "]"
         throw new Error NOT_OBJECT_EXCEPTION
     else debug "util.notObjectException => value is an object."
-        
-        
+
+
 ###
 # launch exception (ARRAY_EXCEPTION) if isn't an array value
 # @param value
